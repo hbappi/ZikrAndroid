@@ -9,4 +9,6 @@
     <color name="button_pressed">#A9102B47</color>
     <color name="button_focused">#AE102B47</color>
     <color name="button_normal">#23578E</color>
+    <color name="yellow">#FFC107</color>
+    <color name="transparent">#00000000</color>
 </resources>
