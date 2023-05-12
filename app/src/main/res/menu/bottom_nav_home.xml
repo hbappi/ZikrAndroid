@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nv_categories"
+        android:icon="@drawable/baseline_category_24"
+        android:title="@string/categories"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/nv_all"
+        android:icon="@drawable/baseline_list_alt_24"
+        android:title="@string/all"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/nv_settings"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="@string/settings"
+        android:enabled="true"/>
+
+</menu>
