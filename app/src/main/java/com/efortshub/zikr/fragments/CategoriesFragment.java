@@ -47,7 +47,15 @@ public class CategoriesFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentCategoriesBinding.inflate(inflater, container, false);
 
+        loadRandomDua();
 
+
+
+
+        return binding.getRoot();
+    }
+
+    private void loadRandomDua() {
 
         Random rand = new Random();
         Dua dua = HbUtils.getauDuaOfIndex(requireContext(), Math.max(1, rand.nextInt(Objects.equals(HbUtils.getLanguageCode(requireContext()), "bn") ? 422 : 328)));
@@ -56,14 +64,14 @@ public class CategoriesFragment extends Fragment {
 
         int dind = rand.nextInt(details.size());
 
+        if(details.get(dind).getTranslations().trim().isEmpty()){
+            loadRandomDua();
+            return;
+        }
+
         binding.tvDailyDuaLocale.setText(details.get(dind).getTranslations());
         binding.tvDailyDuaFootnote.setText(details.get(dind).getReference());
 
 
-
-
-
-
-        return binding.getRoot();
     }
 }
