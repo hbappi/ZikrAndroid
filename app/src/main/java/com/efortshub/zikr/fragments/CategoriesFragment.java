@@ -8,8 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.efortshub.zikr.R;
 import com.efortshub.zikr.databinding.FragmentCategoriesBinding;
+import com.efortshub.zikr.models.Dua;
+import com.efortshub.zikr.models.DuaDetails;
+import com.efortshub.zikr.utils.HbUtils;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,6 +46,24 @@ public class CategoriesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentCategoriesBinding.inflate(inflater, container, false);
+
+
+
+        Random rand = new Random();
+        Dua dua = HbUtils.getauDuaOfIndex(requireContext(), Math.max(1, rand.nextInt(Objects.equals(HbUtils.getLanguageCode(requireContext()), "bn") ? 422 : 328)));
+
+        List<DuaDetails> details = dua.getDetails();
+
+        int dind = rand.nextInt(details.size());
+
+        binding.tvDailyDuaLocale.setText(details.get(dind).getTranslations());
+        binding.tvDailyDuaFootnote.setText(details.get(dind).getReference());
+
+
+
+
+
+
         return binding.getRoot();
     }
 }

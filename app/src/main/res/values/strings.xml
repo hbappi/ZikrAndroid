@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Zikr</string>
+    <string name="app_name" translatable="false">Zikr - জিকির</string>
     <string name="categories">Categories</string>
     <string name="all">All</string>
     <string name="settings">Settings</string>
@@ -18,4 +18,6 @@
     <string name="gratitude_confession">Gratitude - Confession</string>
     <string name="nature">Nature</string>
     <string name="notifications">Notifications</string>
+    <string name="english" translatable="false">English</string>
+    <string name="hajj">Hajj</string>
 </resources>

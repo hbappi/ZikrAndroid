@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="categories">বিভাগ</string>
+    <string name="all">সমস্ত</string>
+    <string name="settings">সেটিংস</string>
+    <string name="bedtime">ঘুম</string>
+    <string name="morning_evening">সকাল - সন্ধ্যা</string>
+    <string name="social_manner">সামাজিক</string>
+    <string name="family">পরিবার</string>
+    <string name="purification">পবিত্রতা</string>
+    <string name="prayer">সালাত</string>
+    <string name="ramadan_fasting">রমাদান - সাওম</string>
+    <string name="food_amp_drinks">খাদ্য - পানিয়</string>
+    <string name="possession_rizk">রিজিক</string>
+    <string name="travel">ভ্রমণ</string>
+    <string name="illness_death">অসুস্থতা - মৃত্যু</string>
+    <string name="seeking_refuge">আশ্রয় প্রার্থনা</string>
+    <string name="gratitude_confession">কৃতজ্ঞতা প্রকাশ</string>
+    <string name="nature">পরিবেশ</string>
+    <string name="notifications">নোটিফিকেশন</string>
+    <string name="hajj">হজ্জ</string>
+</resources>

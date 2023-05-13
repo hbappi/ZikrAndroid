@@ -20,9 +20,9 @@
                 android:id="@+id/btn_daily_dua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/daily_dua_bg"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/bg_daily_dua"
                 android:clickable="true"
                 android:focusable="true"
                 android:orientation="vertical">
@@ -36,7 +36,7 @@
                     android:paddingRight="12dp"
                     android:textAlignment="center"
                     android:textColor="@color/yellow"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -45,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:gravity="end"
+                    android:maxLines="1"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:textSize="11sp"
@@ -68,10 +69,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -100,7 +102,7 @@
                                 android:padding="12dp"
                                 android:text="@string/bedtime"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -119,10 +121,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
 
@@ -152,7 +155,7 @@
                                 android:padding="12dp"
                                 android:text="@string/morning_evening"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -177,10 +180,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -210,7 +214,7 @@
                                 android:padding="12dp"
                                 android:text="@string/social_manner"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -229,10 +233,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
 
@@ -262,7 +267,7 @@
                                 android:padding="12dp"
                                 android:text="@string/family"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -287,10 +292,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -317,9 +323,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:padding="12dp"
-                                android:text="Hajj"
+                                android:text="@string/hajj"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -338,10 +344,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
 
@@ -371,7 +378,7 @@
                                 android:padding="12dp"
                                 android:text="@string/purification"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -396,10 +403,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -428,7 +436,7 @@
                                 android:padding="12dp"
                                 android:text="@string/prayer"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -447,10 +455,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
 
@@ -481,7 +490,7 @@
                                 android:padding="12dp"
                                 android:text="@string/ramadan_fasting"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -506,10 +515,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -538,7 +548,7 @@
                                 android:padding="12dp"
                                 android:text="@string/food_amp_drinks"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -557,10 +567,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
 
@@ -591,7 +602,7 @@
                                 android:padding="12dp"
                                 android:text="@string/possession_rizk"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -616,10 +627,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -648,7 +660,7 @@
                                 android:padding="12dp"
                                 android:text="@string/travel"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -667,10 +679,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
 
@@ -700,7 +713,7 @@
                                 android:padding="12dp"
                                 android:text="@string/illness_death"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -725,10 +738,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -758,7 +772,7 @@
                                 android:padding="12dp"
                                 android:text="@string/seeking_refuge"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -777,10 +791,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
 
@@ -810,7 +825,7 @@
                                 android:padding="12dp"
                                 android:text="@string/gratitude_confession"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -835,10 +850,11 @@
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
+                        app:cardElevation="5dp"
                         app:rippleColor="@color/button_focused">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -867,7 +883,7 @@
                                 android:padding="12dp"
                                 android:text="@string/nature"
                                 android:textAlignment="center"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
