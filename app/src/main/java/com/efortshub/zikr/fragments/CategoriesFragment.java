@@ -58,7 +58,7 @@ public class CategoriesFragment extends Fragment {
     private void loadRandomDua() {
 
         Random rand = new Random();
-        Dua dua = HbUtils.getauDuaOfIndex(requireContext(), Math.max(1, rand.nextInt(Objects.equals(HbUtils.getLanguageCode(requireContext()), "bn") ? 422 : 328)));
+        Dua dua = HbUtils.getDuaOfIndex(requireContext(), Math.max(1, rand.nextInt(Objects.equals(HbUtils.getLanguageCode(requireContext()), "bn") ? 422 : 328)));
 
         List<DuaDetails> details = dua.getDetails();
 

@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.efortshub.zikr.R;
 import com.efortshub.zikr.databinding.ActivityMainBinding;
+import com.efortshub.zikr.fragments.AllItemFragment;
 import com.efortshub.zikr.fragments.CategoriesFragment;
 import com.efortshub.zikr.utils.HbConsts;
 
@@ -72,9 +73,11 @@ public class MainActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.nv_categories) {
                 setFragment(CategoriesFragment.newInstance());
             }
+            else if(item.getItemId() == R.id.nv_all){
+                setFragment(AllItemFragment.newInstance());
+            }
 
-            return false;
-
+            return true;
 
         });
 

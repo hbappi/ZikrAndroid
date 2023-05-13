@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Material3.CardView.Filled"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="2dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/button_normal"
+    android:layout_margin="2dp">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+
+        android:layout_margin="2dp">
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:textColor="@color/light_yellow"
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:paddingRight="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>

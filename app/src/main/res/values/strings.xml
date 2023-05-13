@@ -20,4 +20,7 @@
     <string name="notifications">Notifications</string>
     <string name="english" translatable="false">English</string>
     <string name="hajj">Hajj</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search...</string>
 </resources>

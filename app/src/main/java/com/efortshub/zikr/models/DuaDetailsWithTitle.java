@@ -1,6 +1,6 @@
 package com.efortshub.zikr.models;
 
-public class DuaDetails {
+public class DuaDetailsWithTitle {
     String dua_segment_id;
     String top;
     String arabic_diacless;
@@ -9,9 +9,16 @@ public class DuaDetails {
     String translations;
     String bottom;
     String reference;
+    String title;
+
+    public String getDua_global_id() {
+        return dua_global_id;
+    }
+
     String dua_global_id;
 
-    public DuaDetails(String dua_segment_id, String top, String arabic_diacless, String arabic, String transliteration, String translations, String bottom, String reference, String dua_global_id) {
+
+    public DuaDetailsWithTitle(String dua_segment_id, String top, String arabic_diacless, String arabic, String transliteration, String translations, String bottom, String reference,String dua_global_id, String title) {
         this.dua_segment_id = dua_segment_id;
         this.top = top;
         this.arabic_diacless = arabic_diacless;
@@ -21,6 +28,7 @@ public class DuaDetails {
         this.bottom = bottom;
         this.reference = reference;
         this.dua_global_id = dua_global_id;
+        this.title = title;
     }
 
     public String getDua_segment_id() {
@@ -55,7 +63,7 @@ public class DuaDetails {
         return reference;
     }
 
-    public String getDua_global_id() {
-        return dua_global_id;
+    public String getTitle() {
+        return title;
     }
 }

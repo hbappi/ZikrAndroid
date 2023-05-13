@@ -7,7 +7,7 @@
         <item name="android:windowBackground">@color/dark_blue</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryVariant">@color/medium_blue</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/light_yellow</item>
         <item name="colorOnBackground">@color/white</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/dark_blue</item>
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/dark_blue</item>
@@ -21,7 +21,7 @@
     </style>
 
     <style name="MyActionBarTitleText" parent="TextAppearance.Material3.ActionBar.Title">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/light_yellow</item>
     </style>
 
     <style name="Theme.Zikr" parent="Base.Theme.Zikr" />
