@@ -1,5 +1,6 @@
 package com.efortshub.zikr.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,14 +11,17 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 
+import com.efortshub.zikr.activities.DuaDetailsActivity;
 import com.efortshub.zikr.adapter.AllItemRvAdapter;
 import com.efortshub.zikr.databinding.FragmentAllItemBinding;
 import com.efortshub.zikr.interfaces.BottomNavAnimationListener;
+import com.efortshub.zikr.interfaces.ItemClickListener;
 import com.efortshub.zikr.models.DuaDetailsWithTitle;
 import com.efortshub.zikr.utils.HbUtils;
 
@@ -54,7 +58,15 @@ public class AllItemFragment extends Fragment {
         Executors.newSingleThreadExecutor()
                 .execute(() -> {
                     List<DuaDetailsWithTitle> duaList = HbUtils.getAllDua(requireContext());
-                    AllItemRvAdapter adapter = new AllItemRvAdapter(duaList);
+                    AllItemRvAdapter adapter = new AllItemRvAdapter(duaList, details -> {
+                        Log.d("hbhb", "onCreateView: dua clidked "+ details.getTitle());
+                        Intent i = new Intent(requireActivity(), DuaDetailsActivity.class);
+                        i.putExtra("dua", details);
+                        i.putExtra("full", true);
+
+                        startActivity(i);
+
+                    });
 
 
                     new Handler(Looper.getMainLooper()).post(() -> {

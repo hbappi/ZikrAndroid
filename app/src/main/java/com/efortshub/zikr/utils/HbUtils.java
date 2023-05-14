@@ -72,10 +72,12 @@ public class HbUtils {
             size = 422;
         }
 
+        int index = 0;
         for (int i = 1; i <= size; i++) {
             Dua dua = getDuaOfIndex(context, i);
+
             for (DuaDetails dd : dua.getDetails()) {
-                duaList.add(new DuaDetailsWithTitle(dd.getDua_segment_id(), dd.getTop(), dd.getArabic_diacless(), dd.getArabic(), dd.getTransliteration(), dd.getTranslations(), dd.getBottom(), dd.getReference(), dd.getDua_global_id(),dua.getPageTitle()));
+                duaList.add(new DuaDetailsWithTitle(dd.getDua_segment_id(), dd.getTop(), dd.getArabic_diacless(), dd.getArabic(), dd.getTransliteration(), dd.getTranslations(), dd.getBottom(), dd.getReference(), dd.getDua_global_id(),dua.getPageTitle(), index++));
             }
         }
 

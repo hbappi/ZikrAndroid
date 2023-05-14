@@ -1,21 +1,25 @@
 package com.efortshub.zikr.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.efortshub.zikr.databinding.RowAllItemListBinding;
+import com.efortshub.zikr.interfaces.ItemClickListener;
 import com.efortshub.zikr.models.DuaDetailsWithTitle;
 
 import java.util.List;
 
 public class AllItemRvAdapter extends RecyclerView.Adapter<AllItemRvAdapter.MyHolder> {
     private List<DuaDetailsWithTitle> duaList;
+    private ItemClickListener itemClickListener;
 
-    public AllItemRvAdapter(List<DuaDetailsWithTitle> duaList) {
+    public AllItemRvAdapter(List<DuaDetailsWithTitle> duaList, ItemClickListener itemClickListener) {
         this.duaList = duaList;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -34,6 +38,7 @@ public class AllItemRvAdapter extends RecyclerView.Adapter<AllItemRvAdapter.MyHo
         String count = duaDetails.getDua_global_id() + (duaDetails.getDua_segment_id().trim().isEmpty() ? "" : "." + duaDetails.getDua_segment_id());
         binding.tvCount.setText(count);
         binding.tvTitle.setText(duaDetails.getTitle());
+        binding.getRoot().setOnClickListener(v -> itemClickListener.onClicked(duaDetails));
 
 
     }

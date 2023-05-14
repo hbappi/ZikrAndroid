@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_blue">#112230</color>
     <color name="medium_blue">#2a4494</color>
+    <color name="mid_dark_blue">#17405C</color>
     <color name="light_blue">#CFE1FF</color>
     <color name="color_primary">#23578E</color>
     <color name="button_pressed">#A9102B47</color>

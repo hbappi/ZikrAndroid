@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="12dp"
+    android:padding="16dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:padding="8dp"
+        android:hint="@string/go_to"
+        android:background="@drawable/bg_round_corner"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/et_goto"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="@string/go"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:id="@+id/btn_go"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

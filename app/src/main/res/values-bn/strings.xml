@@ -20,4 +20,8 @@
     <string name="notifications">নোটিফিকেশন</string>
     <string name="hajj">হজ্জ</string>
     <string name="search">খুঁজুন…</string>
+    <string name="previous">পুর্ববর্তি</string>
+    <string name="next">পরবর্তি</string>
+    <string name="go_to">চলে যান</string>
+    <string name="go">যান</string>
 </resources>

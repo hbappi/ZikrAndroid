@@ -1,6 +1,8 @@
 package com.efortshub.zikr.models;
 
-public class DuaDetailsWithTitle {
+import java.io.Serializable;
+
+public class DuaDetailsWithTitle implements Serializable {
     String dua_segment_id;
     String top;
     String arabic_diacless;
@@ -10,6 +12,7 @@ public class DuaDetailsWithTitle {
     String bottom;
     String reference;
     String title;
+    private int segmentIndex;
 
     public String getDua_global_id() {
         return dua_global_id;
@@ -18,7 +21,7 @@ public class DuaDetailsWithTitle {
     String dua_global_id;
 
 
-    public DuaDetailsWithTitle(String dua_segment_id, String top, String arabic_diacless, String arabic, String transliteration, String translations, String bottom, String reference,String dua_global_id, String title) {
+    public DuaDetailsWithTitle(String dua_segment_id, String top, String arabic_diacless, String arabic, String transliteration, String translations, String bottom, String reference,String dua_global_id, String title, int segmentIndex) {
         this.dua_segment_id = dua_segment_id;
         this.top = top;
         this.arabic_diacless = arabic_diacless;
@@ -29,6 +32,7 @@ public class DuaDetailsWithTitle {
         this.reference = reference;
         this.dua_global_id = dua_global_id;
         this.title = title;
+        this.segmentIndex = segmentIndex;
     }
 
     public String getDua_segment_id() {
@@ -37,6 +41,10 @@ public class DuaDetailsWithTitle {
 
     public String getTop() {
         return top;
+    }
+
+    public int getSegmentIndex() {
+        return segmentIndex;
     }
 
     public String getArabic_diacless() {
