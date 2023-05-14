@@ -56,8 +56,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.efortshub.zikr.views.HbBottomNav
         android:id="@+id/bnav_main"
+        android:animateLayoutChanges="true"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +66,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_home">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/bottom_nav_home"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

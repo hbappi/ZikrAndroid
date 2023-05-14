@@ -11,6 +11,11 @@
         android:title="@string/all"
         android:enabled="true"/>
     <item
+        android:id="@+id/nv_search"
+        android:icon="@drawable/baseline_manage_search_24"
+        android:title="@string/search"
+        android:enabled="true"/>
+    <item
         android:id="@+id/nv_notification"
         android:icon="@drawable/baseline_notifications_active_24"
         android:title="@string/notifications"

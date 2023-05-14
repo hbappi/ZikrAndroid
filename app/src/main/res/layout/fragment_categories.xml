@@ -66,6 +66,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_bedtime"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -118,6 +119,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_morning_evening"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -177,6 +179,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_social_manner"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -230,6 +233,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_family"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -289,6 +293,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_hajj"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -341,6 +346,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_purification"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -400,6 +406,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_prayer"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -452,6 +459,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_ramadan"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -512,6 +520,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_food_drinks"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -564,6 +573,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_rizq"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -624,6 +634,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_travel"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -676,6 +687,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_illness"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -735,6 +747,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_seeking_refuge"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -788,6 +801,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_confession"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -847,6 +861,7 @@
                     android:padding="8dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_nature"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

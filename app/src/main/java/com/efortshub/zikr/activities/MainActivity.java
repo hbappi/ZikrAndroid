@@ -5,15 +5,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.efortshub.zikr.R;
 import com.efortshub.zikr.databinding.ActivityMainBinding;
 import com.efortshub.zikr.fragments.AllItemFragment;
 import com.efortshub.zikr.fragments.CategoriesFragment;
+import com.efortshub.zikr.fragments.SearchFragment;
+import com.efortshub.zikr.interfaces.BottomNavAnimationListener;
 import com.efortshub.zikr.utils.HbConsts;
 
 import java.util.Locale;
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fm = getSupportFragmentManager();
     Fragment oldFragment;
     String languageCode = "en";
+    boolean bottomNavEnabled = true;
 
 
     @Override
@@ -43,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setFragment(CategoriesFragment.newInstance());
+
+        setFragment(CategoriesFragment.newInstance(this::showBottomNav));
 
         binding.tvChangeLanguage.setText(Objects.equals(languageCode, "bn") ? "বাংলা" : "English");
 
@@ -70,22 +77,37 @@ public class MainActivity extends AppCompatActivity {
 
             Log.d("hbhb", "onCreate: onn bnav selected: " + item.getTitle() + " " + (item.getItemId() == R.id.nv_categories));
 
-            if (item.getItemId() == R.id.nv_categories) {
-                setFragment(CategoriesFragment.newInstance());
-            }
-            else if(item.getItemId() == R.id.nv_all){
-                setFragment(AllItemFragment.newInstance());
+            if (bottomNavEnabled) {
+                if (item.getItemId() == R.id.nv_categories) {
+                    setFragment(CategoriesFragment.newInstance(this::showBottomNav));
+                    return true;
+                } else if (item.getItemId() == R.id.nv_all) {
+                    setFragment(AllItemFragment.newInstance(this::showBottomNav));
+                    return true;
+                } else if (item.getItemId() == R.id.nv_search) {
+                    setFragment(SearchFragment.newInstance(this::showBottomNav));
+                    return true;
+                }
             }
 
-            return true;
+            return bottomNavEnabled;
 
         });
 
 
     }
 
+    private void hideBottomNav() {
+        bottomNavEnabled = false;
+
+    }
+
+    private void showBottomNav() {
+        bottomNavEnabled = true;
+    }
 
     void setFragment(Fragment fragment) {
+        hideBottomNav();
         FragmentTransaction ft = fm.beginTransaction();
 
         if (oldFragment == null) {
