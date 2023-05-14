@@ -17,6 +17,8 @@
         android:textAlignment="center"
         android:layout_gravity="center"
         android:gravity="center"
+        android:inputType="number"
+
         android:id="@+id/et_goto"/>
 
     <Button

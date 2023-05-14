@@ -1,7 +1,10 @@
 package com.efortshub.zikr.fragments;
 
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -10,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -23,6 +27,10 @@ import com.efortshub.zikr.utils.HbUtils;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderEffectBlur;
+import eightbitlab.com.blurview.RenderScriptBlur;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,6 +64,8 @@ public class CategoriesFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentCategoriesBinding.inflate(inflater, container, false);
 
+//        blurViews(binding.blur1);
+
 
         startAnimationLoop(R.anim.anim_fade_out, 0,
                 binding.btnBedtime,
@@ -81,16 +91,49 @@ public class CategoriesFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void blurViews(BlurView... views) {
+
+        for (BlurView v : views) {
+
+            float radius = 20f;
+
+            View decorView = requireActivity().getWindow().getDecorView();
+            // ViewGroup you want to start blur from. Choose root as close to BlurView in hierarchy as possible.
+            ViewGroup rootView = decorView.findViewById(android.R.id.content);
+
+            // Optional:
+            // Set drawable to draw in the beginning of each blurred frame.
+            // Can be used in case your layout has a lot of transparent space and your content
+            // gets a too low alpha value after blur is applied.
+            Drawable windowBackground = AppCompatResources.getDrawable(requireContext(), R.drawable.bg);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                v.setupWith(rootView, new RenderEffectBlur()) // or RenderEffectBlur
+                        .setFrameClearDrawable(windowBackground) // Optional
+                        .setBlurRadius(radius);
+            } else {
+                v.setupWith(rootView, new RenderScriptBlur(requireContext())) // or RenderEffectBlur
+                        .setFrameClearDrawable(windowBackground) // Optional
+                        .setBlurRadius(radius);
+
+            }
+            v.setOutlineProvider(ViewOutlineProvider.BOUNDS);
+            v.setClipToOutline(true);
+
+        }
+
+    }
+
     private void startAnimationLoop(int res, int startFrom, View... view) {
 
         Animation a = AnimationUtils.loadAnimation(requireContext(), res);
-        if(startFrom==0){
-            for (View v:view){
+        if (startFrom == 0) {
+            for (View v : view) {
                 v.setAlpha(0f);
             }
         }
-        Log.d("hbhb", "startAnimationWithEndListener: "+startFrom);
-        if(startFrom==view.length){
+        Log.d("hbhb", "startAnimationWithEndListener: " + startFrom);
+        if (startFrom == view.length) {
             listener.shouldShowBottomNavNow();
         }
         if (view.length > startFrom) {
@@ -102,8 +145,8 @@ public class CategoriesFragment extends Fragment {
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
 
                         startAnimationLoop(res, startFrom + 1, view);
-                        Log.d("hbhb", "onAnimationEnd: "+startFrom);
-                    },50);
+                        Log.d("hbhb", "onAnimationEnd: " + startFrom);
+                    }, 50);
 
                 }
 

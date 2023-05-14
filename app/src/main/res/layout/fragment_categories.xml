@@ -63,14 +63,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="8dp">
+                    android:clipChildren="false"
+                    android:padding="8dp"
+                    app:blurOverlayColor="@color/yellow">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/btn_bedtime"
                         style="@style/Widget.Material3.CardView.Filled"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/bg_card"
                         android:clickable="true"
                         android:focusable="true"
                         app:cardBackgroundColor="@color/color_primary"
@@ -908,6 +909,7 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

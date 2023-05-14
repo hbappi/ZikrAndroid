@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 
+import jp.wasabeef.recyclerview.adapters.AnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
 
 public class AllItemFragment extends Fragment {
@@ -71,10 +73,10 @@ public class AllItemFragment extends Fragment {
 
                     new Handler(Looper.getMainLooper()).post(() -> {
                         binding.rvMain.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-                        SlideInLeftAnimationAdapter animAdapter = new SlideInLeftAnimationAdapter(adapter);
+                        AnimationAdapter animAdapter = new ScaleInAnimationAdapter(adapter);
                         animAdapter.setDuration(500);
                         animAdapter.setStartPosition(0);
-                        animAdapter.setInterpolator(new OvershootInterpolator(1f));
+                        animAdapter.setInterpolator(new OvershootInterpolator(2f));
                         animAdapter.setStartPosition(0);
                         animAdapter.setFirstOnly(false);
                         animAdapter.setHasStableIds(false);

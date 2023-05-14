@@ -64,9 +64,9 @@ public class SearchFragment extends Fragment {
                     adapter = new SearchItemRvAdapter(duaFilteredList);
 
                     AnimationAdapter animationAdapter = new ScaleInAnimationAdapter(adapter);
-                    animationAdapter.setDuration(1000);
+                    animationAdapter.setDuration(1200);
                     animationAdapter.setFirstOnly(false);
-                    animationAdapter.setInterpolator(new OvershootInterpolator(1f));
+                    animationAdapter.setInterpolator(new OvershootInterpolator(2f));
                     new Handler(Looper.getMainLooper()).post(() -> {
 
                         binding.rvMain.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
