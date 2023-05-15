@@ -27,15 +27,40 @@ public class SearchItemRvAdapter extends RecyclerView.Adapter<SearchItemRvAdapte
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(RowSearchItemListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
+/*
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if(holder.getAdapterPosition()==0){
+
+            holder.binding.llTop.setVisibility(View.VISIBLE);
+        }  else if(holder.getAdapterPosition() == duaDetailsWithTitles.size()-1){
+
+            holder.binding.llBottom.setVisibility(View.VISIBLE);
+        }
+
+        super.onBindViewHolder(holder, position, payloads);
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull MyViewHolder holder) {
+        if(holder.getAdapterPosition()==0){
+
+            holder.binding.llTop.setVisibility(View.VISIBLE);
+        }  else if(holder.getAdapterPosition() == duaDetailsWithTitles.size()-1){
+
+            holder.binding.llBottom.setVisibility(View.VISIBLE);
+        }
+        super.onViewRecycled(holder);
+    }
+*/
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         RowSearchItemListBinding binding = holder.binding;
 
-        int lp = position-1;
-        if(lp>=0 && lp<duaDetailsWithTitles.size()){
 
-            DuaDetailsWithTitle dua = duaDetailsWithTitles.get(position - 1 );
+            DuaDetailsWithTitle dua = duaDetailsWithTitles.get(position);
 
 
 
@@ -53,14 +78,13 @@ public class SearchItemRvAdapter extends RecyclerView.Adapter<SearchItemRvAdapte
 //            binding.bottomGap.setVisibility(View.INVISIBLE);
 //        }
 
-            binding.mcv.setVisibility(View.VISIBLE);
-        }
+
 
     }
 
     @Override
     public int getItemCount() {
-        return duaDetailsWithTitles.size() + 2;
+        return duaDetailsWithTitles.size();
     }
 
     public void setDuas(List<DuaDetailsWithTitle> duaFilteredList) {

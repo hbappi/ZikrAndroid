@@ -14,6 +14,8 @@ import android.view.View;
 import com.efortshub.zikr.R;
 import com.efortshub.zikr.databinding.ActivityDuaDetailsBinding;
 import com.efortshub.zikr.databinding.DialogGoToBinding;
+import com.efortshub.zikr.models.Dua;
+import com.efortshub.zikr.models.DuaDetails;
 import com.efortshub.zikr.models.DuaDetailsWithTitle;
 import com.efortshub.zikr.utils.HbUtils;
 
@@ -41,10 +43,54 @@ public class DuaDetailsActivity extends AppCompatActivity {
         }
 
 
-        dua = (DuaDetailsWithTitle) getIntent().getSerializableExtra("dua");
         isFull = getIntent().getBooleanExtra("full", true);
+        if (isFull) {
+            dua = (DuaDetailsWithTitle) getIntent().getSerializableExtra("dua");
+            setDua(dua);
+        } else {
 
-        setDua(dua);
+            int[] arr = getIntent().getIntArrayExtra("dua");
+
+            Executors.newSingleThreadExecutor().execute(() -> {
+
+                int index = 0;
+                for (int i : arr) {
+                    Dua d = HbUtils.getDuaOfIndex(getApplicationContext(), i);
+
+                    if (duaDetailsWithTitleList == null)
+                        duaDetailsWithTitleList = new ArrayList<>();
+                    if(d!=null){
+                        if(d.getDetails()!=null){
+                            for (DuaDetails dd : d.getDetails()) {
+                                duaDetailsWithTitleList.add(
+                                        new DuaDetailsWithTitle(
+                                                dd.getDua_segment_id(),
+                                                dd.getTop(),
+                                                dd.getArabic_diacless(),
+                                                dd.getArabic(),
+                                                dd.getTransliteration(),
+                                                dd.getTranslations(),
+                                                dd.getBottom(),
+                                                dd.getReference(),
+                                                dd.getDua_global_id(),
+                                                d.getPageTitle(),
+                                                index++));
+
+                            }
+                        }
+                    }
+
+                }
+
+                runOnUiThread(() -> {
+                    setDua(duaDetailsWithTitleList.get(0));
+                    max = duaDetailsWithTitleList.size();
+                    initFunctions();
+
+                });
+
+            });
+        }
 
         if (dua != null) {
             initFunctions();
@@ -74,6 +120,10 @@ public class DuaDetailsActivity extends AppCompatActivity {
                     }
                 });
 
+            } else {
+                if (dua.getSegmentIndex() < max - 1) {
+                    runOnUiThread(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() + 1)));
+                }
             }
 
         });
@@ -96,6 +146,10 @@ public class DuaDetailsActivity extends AppCompatActivity {
                 });
 
 
+            } else {
+                if (dua.getSegmentIndex() > 0) {
+                    runOnUiThread(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() - 1)));
+                }
             }
 
         });
@@ -112,7 +166,7 @@ public class DuaDetailsActivity extends AppCompatActivity {
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
 
-            db.etGoto.setHint("1 - "+duaDetailsWithTitleList.size());
+            db.etGoto.setHint("1 - " + duaDetailsWithTitleList.size());
 
             db.etGoto.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -163,7 +217,7 @@ public class DuaDetailsActivity extends AppCompatActivity {
             binding.tvReference.setText(dua.getReference());
             binding.tvTranslation.setText(dua.getTranslations());
             binding.tvTransliteration.setText(dua.getTransliteration());
-            String dsi = "("+dua.getDua_global_id() + (dua.getDua_segment_id().length() > 0 ? "." : "") + dua.getDua_segment_id() + ")\n " + (dua.getSegmentIndex() + 1) + (duaDetailsWithTitleList.size() > 0 ? "/" + duaDetailsWithTitleList.size() : "") + " ";
+            String dsi = "(" + dua.getDua_global_id() + (dua.getDua_segment_id().length() > 0 ? "." : "") + dua.getDua_segment_id() + ")\n " + (dua.getSegmentIndex() + 1) + (duaDetailsWithTitleList.size() > 0 ? "/" + duaDetailsWithTitleList.size() : "") + " ";
             binding.tvCurrentSegment.setText(dsi);
 
         }

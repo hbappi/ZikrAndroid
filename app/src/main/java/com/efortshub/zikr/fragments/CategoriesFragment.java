@@ -1,5 +1,6 @@
 package com.efortshub.zikr.fragments;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,11 +19,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.efortshub.zikr.R;
+import com.efortshub.zikr.activities.DuaDetailsActivity;
 import com.efortshub.zikr.databinding.FragmentCategoriesBinding;
 import com.efortshub.zikr.interfaces.BottomNavAnimationListener;
 import com.efortshub.zikr.models.Dua;
 import com.efortshub.zikr.models.DuaDetails;
+import com.efortshub.zikr.utils.HbConsts;
 import com.efortshub.zikr.utils.HbUtils;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 import java.util.Objects;
@@ -66,7 +70,7 @@ public class CategoriesFragment extends Fragment {
 
 //        blurViews(binding.blur1);
 
-
+        loadRandomDua();
         startAnimationLoop(R.anim.anim_fade_out, 0,
                 binding.btnBedtime,
                 binding.btnMorningEvening,
@@ -86,9 +90,19 @@ public class CategoriesFragment extends Fragment {
         );
 
 
-        loadRandomDua();
 
         return binding.getRoot();
+    }
+
+    private void setOpenDetailsListener(MaterialCardView btn, int[] arr) {
+        btn.setOnClickListener(v -> {
+            Intent i = new Intent(requireActivity(), DuaDetailsActivity.class);
+            i.putExtra("dua", arr);
+            i.putExtra("full", false);
+
+            startActivity(i);
+        });
+
     }
 
     private void blurViews(BlurView... views) {
@@ -135,6 +149,7 @@ public class CategoriesFragment extends Fragment {
         Log.d("hbhb", "startAnimationWithEndListener: " + startFrom);
         if (startFrom == view.length) {
             listener.shouldShowBottomNavNow();
+            initFunctions();
         }
         if (view.length > startFrom) {
             view[startFrom].startAnimation(a);
@@ -158,6 +173,31 @@ public class CategoriesFragment extends Fragment {
                 public void onAnimationRepeat(Animation animation) {
                 }
             });
+        }
+    }
+
+    private void initFunctions() {
+
+        if (HbUtils.getLanguageCode(requireContext()).equals("bn")) {
+
+            setOpenDetailsListener(binding.btnBedtime, HbConsts.CL_BN_SLEEPING);
+            setOpenDetailsListener(binding.btnMorningEvening, HbConsts.CL_BN_MORNING_EVENING);
+            setOpenDetailsListener(binding.btnSocialManner, HbConsts.CL_BN_SOCIAL);
+            setOpenDetailsListener(binding.btnFamily, HbConsts.CL_BN_FAMILY);
+            setOpenDetailsListener(binding.btnHajj, HbConsts.CL_BN_HAJJ);
+            setOpenDetailsListener(binding.btnPurification, HbConsts.CL_BN_PURIFICATION);
+            setOpenDetailsListener(binding.btnPrayer, HbConsts.CL_BN_PRAYER);
+            setOpenDetailsListener(binding.btnRamadan, HbConsts.CL_BN_RAMADAN);
+            setOpenDetailsListener(binding.btnFoodDrinks, HbConsts.CL_BN_FOOD_DRINK);
+            setOpenDetailsListener(binding.btnRizq, HbConsts.CL_BN_PROVISION);
+            setOpenDetailsListener(binding.btnTravel, HbConsts.CL_BN_TRAVEL);
+            setOpenDetailsListener(binding.btnIllness, HbConsts.CL_BN_SICKNESS);
+            setOpenDetailsListener(binding.btnSeekingRefuge, HbConsts.CL_BN_REFUGE);
+            setOpenDetailsListener(binding.btnConfession, HbConsts.CL_BN_GRATITUDE);
+            setOpenDetailsListener(binding.btnNature, HbConsts.CL_BN_NATURE);
+
+        } else {
+
         }
     }
 

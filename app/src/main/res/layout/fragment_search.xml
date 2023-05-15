@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.SearchFragment">
+    tools:context=".fragments.SearchFragment"
+    android:padding="4dp">
 
     <EditText
         android:id="@+id/et_search"
@@ -37,6 +38,9 @@
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/rv_main"
         android:visibility="gone"
+        android:paddingTop="100dp"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
         />
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/lv_no_data"

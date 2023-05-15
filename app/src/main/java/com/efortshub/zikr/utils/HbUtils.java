@@ -60,7 +60,7 @@ public class HbUtils {
 
         Gson gson = new Gson();
         Dua dua = gson.fromJson(result, Dua.class);
-        Log.d("hbhb", "onCreate: " + dua.getPageTitle() + " - " + dua.getDetails().get(0).getTranslations());
+//        Log.d("hbhb", "onCreate: " + dua.getPageTitle() + " - " + dua.getDetails().get(0).getTranslations());
         return dua;
 
     }

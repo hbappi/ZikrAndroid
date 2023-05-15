@@ -14,7 +14,7 @@
         style="@style/Widget.Material3.CardView.Filled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:cardBackgroundColor="@color/medium_blue">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -94,7 +94,6 @@
 
 
     </com.google.android.material.card.MaterialCardView>
-
 
 
 
