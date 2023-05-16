@@ -16,9 +16,9 @@
         android:title="@string/search"
         android:enabled="true"/>
     <item
-        android:id="@+id/nv_notification"
-        android:icon="@drawable/baseline_notifications_active_24"
-        android:title="@string/notifications"
+        android:id="@+id/nv_favorite"
+        android:icon="@drawable/baseline_favorite_24"
+        android:title="@string/favorite"
         android:enabled="true"/>
     <item
         android:id="@+id/nv_settings"

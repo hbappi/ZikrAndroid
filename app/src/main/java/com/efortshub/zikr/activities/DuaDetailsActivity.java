@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.efortshub.zikr.databinding.ActivityDuaDetailsBinding;
 import com.efortshub.zikr.databinding.DialogGoToBinding;
 import com.efortshub.zikr.models.DuaDetailsWithTitle;
+import com.efortshub.zikr.utils.DbUtils;
 import com.efortshub.zikr.utils.HbUtils;
 
 import java.util.ArrayList;
@@ -237,6 +238,10 @@ public class DuaDetailsActivity extends AppCompatActivity {
                     break;
                 default:
             }
+
+
+            DbUtils.addToHistory(getApplicationContext(), Integer.parseInt(dua.getDua_global_id()));
+            DbUtils.addToFavorite(getApplicationContext(), Integer.parseInt(dua.getDua_global_id()));
             /*
             switch (direction) {
                 case DIRECTION_UP:

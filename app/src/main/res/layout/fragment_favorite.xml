@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FavoriteFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search"
+            android:padding="8dp"
+            android:textColor="@color/yellow"
+            android:textColorHint="@color/button_normal" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_margin="8dp"
+            android:id="@+id/rv_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="true"
+            android:paddingTop="20dp"
+            android:paddingBottom="100dp"
+            android:clipToPadding="false"
+            android:visibility="gone" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_color="@color/medium_blue"
+            app:shimmer_highlight_color="@color/light_blue">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="45dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="45dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="45dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="45dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="45dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+                <include
+                    layout="@layout/row_all_item_list"
+                    android:layout_height="45dp"
+                    android:layout_width="match_parent"
+                    android:layout_margin="2dp"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.cardview.widget.CardView
+        style="@style/Widget.Material3.CardView.Outlined"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.9"
+
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_round_card"
+        android:outlineProvider="background"
+        android:padding="8dp"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/btn_favorite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/bg_active_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_current_segment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layoutDirection="ltr"
+                    android:paddingStart="4dp"
+                    android:src="@drawable/baseline_favorite_24"
+                    android:textDirection="ltr"
+                    android:tint="@color/yellow"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/favorite"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/btn_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_current_segment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layoutDirection="ltr"
+                    android:paddingStart="4dp"
+                    android:src="@drawable/baseline_history_24"
+                    android:textDirection="ltr"
+                    android:tint="@color/yellow"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/history"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.efortshub.zikr.utils;
 public class HbConsts {
     public static final String KEY_SAHRED_PREF = "sp";
     public static final String KEY_SP_LANGUAGE_CODE = "language_code";
+    public static final String DB_NAME = "";
 
 
     public static final int[] CL_BN_SLEEPING = {2, 3, 4, 5, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 385, 386, 387, 388, 389, 390};

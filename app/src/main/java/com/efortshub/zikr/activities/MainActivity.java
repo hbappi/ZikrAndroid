@@ -9,6 +9,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +18,10 @@ import com.efortshub.zikr.R;
 import com.efortshub.zikr.databinding.ActivityMainBinding;
 import com.efortshub.zikr.fragments.AllItemFragment;
 import com.efortshub.zikr.fragments.CategoriesFragment;
+import com.efortshub.zikr.fragments.FavoriteFragment;
 import com.efortshub.zikr.fragments.SearchFragment;
 import com.efortshub.zikr.interfaces.BottomNavAnimationListener;
+import com.efortshub.zikr.utils.DbHelper;
 import com.efortshub.zikr.utils.HbConsts;
 
 import java.util.Locale;
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
 
 
         setFragment(CategoriesFragment.newInstance(this::showBottomNav));
@@ -86,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 } else if (item.getItemId() == R.id.nv_search) {
                     setFragment(SearchFragment.newInstance(this::showBottomNav));
+                    return true;
+                }else if(item.getItemId() == R.id.nv_favorite){
+                    setFragment(FavoriteFragment.newInstance(this::showBottomNav));
                     return true;
                 }
             }
