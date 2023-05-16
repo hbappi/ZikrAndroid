@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    tools:context=".activities.CategoryWiseLIstActivity">
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#D80A222E"
+    >
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/mcv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/m_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mid_dark_blue"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+
+                android:layout_height="match_parent"
+                android:adjustViewBounds="false"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="4dp"
+                android:src="@drawable/baseline_arrow_back_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/yellow" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/yellow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search"
+        android:padding="8dp"
+        android:textColor="@color/yellow"
+        android:textColorHint="@color/button_normal" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="8dp"
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
+        android:visibility="gone" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shimmer_auto_start="true"
+        app:shimmer_base_color="@color/medium_blue"
+        app:shimmer_highlight_color="@color/light_blue">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="70dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="80dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="80dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+            <include
+                layout="@layout/row_all_item_list"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

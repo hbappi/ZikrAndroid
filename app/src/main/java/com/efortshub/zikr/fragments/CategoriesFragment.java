@@ -1,13 +1,10 @@
 package com.efortshub.zikr.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -18,8 +15,11 @@ import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.fragment.app.Fragment;
+
 import com.efortshub.zikr.R;
-import com.efortshub.zikr.activities.DuaDetailsActivity;
+import com.efortshub.zikr.activities.CategoryWiseLIstActivity;
 import com.efortshub.zikr.databinding.FragmentCategoriesBinding;
 import com.efortshub.zikr.interfaces.BottomNavAnimationListener;
 import com.efortshub.zikr.models.Dua;
@@ -90,15 +90,15 @@ public class CategoriesFragment extends Fragment {
         );
 
 
-
         return binding.getRoot();
     }
 
-    private void setOpenDetailsListener(MaterialCardView btn, int[] arr) {
+    private void setOpenDetailsListener(MaterialCardView btn, int[] arr, String title) {
         btn.setOnClickListener(v -> {
-            Intent i = new Intent(requireActivity(), DuaDetailsActivity.class);
-            i.putExtra("dua", arr);
+            Intent i = new Intent(requireActivity(), CategoryWiseLIstActivity.class);
+            i.putExtra("list", arr);
             i.putExtra("full", false);
+            i.putExtra("title", title);
 
             startActivity(i);
         });
@@ -119,7 +119,8 @@ public class CategoriesFragment extends Fragment {
             // Set drawable to draw in the beginning of each blurred frame.
             // Can be used in case your layout has a lot of transparent space and your content
             // gets a too low alpha value after blur is applied.
-            Drawable windowBackground = AppCompatResources.getDrawable(requireContext(), R.drawable.bg);
+            Drawable windowBackground =
+                    AppCompatResources.getDrawable(requireContext(), R.drawable.bg);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 v.setupWith(rootView, new RenderEffectBlur()) // or RenderEffectBlur
@@ -176,27 +177,44 @@ public class CategoriesFragment extends Fragment {
         }
     }
 
+    @SuppressLint("ResourceType")
     private void initFunctions() {
 
         if (HbUtils.getLanguageCode(requireContext()).equals("bn")) {
 
-            setOpenDetailsListener(binding.btnBedtime, HbConsts.CL_BN_SLEEPING);
-            setOpenDetailsListener(binding.btnMorningEvening, HbConsts.CL_BN_MORNING_EVENING);
-            setOpenDetailsListener(binding.btnSocialManner, HbConsts.CL_BN_SOCIAL);
-            setOpenDetailsListener(binding.btnFamily, HbConsts.CL_BN_FAMILY);
-            setOpenDetailsListener(binding.btnHajj, HbConsts.CL_BN_HAJJ);
-            setOpenDetailsListener(binding.btnPurification, HbConsts.CL_BN_PURIFICATION);
-            setOpenDetailsListener(binding.btnPrayer, HbConsts.CL_BN_PRAYER);
-            setOpenDetailsListener(binding.btnRamadan, HbConsts.CL_BN_RAMADAN);
-            setOpenDetailsListener(binding.btnFoodDrinks, HbConsts.CL_BN_FOOD_DRINK);
-            setOpenDetailsListener(binding.btnRizq, HbConsts.CL_BN_PROVISION);
-            setOpenDetailsListener(binding.btnTravel, HbConsts.CL_BN_TRAVEL);
-            setOpenDetailsListener(binding.btnIllness, HbConsts.CL_BN_SICKNESS);
-            setOpenDetailsListener(binding.btnSeekingRefuge, HbConsts.CL_BN_REFUGE);
-            setOpenDetailsListener(binding.btnConfession, HbConsts.CL_BN_GRATITUDE);
-            setOpenDetailsListener(binding.btnNature, HbConsts.CL_BN_NATURE);
+            setOpenDetailsListener(binding.btnBedtime, HbConsts.CL_BN_SLEEPING, getResources().getString(R.string.bedtime));
+            setOpenDetailsListener(binding.btnMorningEvening, HbConsts.CL_BN_MORNING_EVENING, getResources().getString(R.string.morning_evening));
+            setOpenDetailsListener(binding.btnSocialManner, HbConsts.CL_BN_SOCIAL, getResources().getString(R.string.social_manner));
+            setOpenDetailsListener(binding.btnFamily, HbConsts.CL_BN_FAMILY, getResources().getString(R.string.family));
+            setOpenDetailsListener(binding.btnHajj, HbConsts.CL_BN_HAJJ, getResources().getString(R.string.hajj));
+            setOpenDetailsListener(binding.btnPurification, HbConsts.CL_BN_PURIFICATION, getResources().getString(R.string.purification));
+            setOpenDetailsListener(binding.btnPrayer, HbConsts.CL_BN_PRAYER, getResources().getString(R.string.prayer));
+            setOpenDetailsListener(binding.btnRamadan, HbConsts.CL_BN_RAMADAN, getResources().getString(R.string.ramadan_fasting));
+            setOpenDetailsListener(binding.btnFoodDrinks, HbConsts.CL_BN_FOOD_DRINK, getResources().getString(R.string.food_amp_drinks));
+            setOpenDetailsListener(binding.btnRizq, HbConsts.CL_BN_PROVISION, getResources().getString(R.string.possession_rizk));
+            setOpenDetailsListener(binding.btnTravel, HbConsts.CL_BN_TRAVEL, getResources().getString(R.string.travel));
+            setOpenDetailsListener(binding.btnIllness, HbConsts.CL_BN_SICKNESS, getResources().getString(R.string.illness_death));
+            setOpenDetailsListener(binding.btnSeekingRefuge, HbConsts.CL_BN_REFUGE, getResources().getString(R.string.seeking_refuge));
+            setOpenDetailsListener(binding.btnConfession, HbConsts.CL_BN_GRATITUDE, getResources().getString(R.string.gratitude_confession));
+            setOpenDetailsListener(binding.btnNature, HbConsts.CL_BN_NATURE, getResources().getString(R.string.nature));
 
         } else {
+
+            setOpenDetailsListener(binding.btnBedtime, HbConsts.CL_EN_SLEEPING, getResources().getString(R.string.bedtime));
+            setOpenDetailsListener(binding.btnMorningEvening, HbConsts.CL_EN_MORNING_EVENING, getResources().getString(R.string.morning_evening));
+            setOpenDetailsListener(binding.btnSocialManner, HbConsts.CL_EN_SOCIAL, getResources().getString(R.string.social_manner));
+            setOpenDetailsListener(binding.btnFamily, HbConsts.CL_EN_FAMILY, getResources().getString(R.string.family));
+            setOpenDetailsListener(binding.btnHajj, HbConsts.CL_EN_HAJJ, getResources().getString(R.string.hajj));
+            setOpenDetailsListener(binding.btnPurification, HbConsts.CL_EN_PURIFICATION, getResources().getString(R.string.purification));
+            setOpenDetailsListener(binding.btnPrayer, HbConsts.CL_EN_PRAYER, getResources().getString(R.string.prayer));
+            setOpenDetailsListener(binding.btnRamadan, HbConsts.CL_EN_RAMADAN, getResources().getString(R.string.ramadan_fasting));
+            setOpenDetailsListener(binding.btnFoodDrinks, HbConsts.CL_EN_FOOD_DRINK, getResources().getString(R.string.food_amp_drinks));
+            setOpenDetailsListener(binding.btnRizq, HbConsts.CL_EN_PROVISION, getResources().getString(R.string.possession_rizk));
+            setOpenDetailsListener(binding.btnTravel, HbConsts.CL_EN_TRAVEL, getResources().getString(R.string.travel));
+            setOpenDetailsListener(binding.btnIllness, HbConsts.CL_EN_SICKNESS, getResources().getString(R.string.illness_death));
+            setOpenDetailsListener(binding.btnSeekingRefuge, HbConsts.CL_EN_REFUGE, getResources().getString(R.string.seeking_refuge));
+            setOpenDetailsListener(binding.btnConfession, HbConsts.CL_EN_GRATITUDE, getResources().getString(R.string.gratitude_confession));
+            setOpenDetailsListener(binding.btnNature, HbConsts.CL_EN_NATURE, getResources().getString(R.string.nature));
 
         }
     }

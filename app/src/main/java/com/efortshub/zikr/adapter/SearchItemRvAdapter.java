@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.efortshub.zikr.databinding.RowSearchItemListBinding;
 import com.efortshub.zikr.models.DuaDetailsWithTitle;
+import com.efortshub.zikr.utils.HbUtils;
 
 import java.util.List;
 
@@ -65,12 +66,12 @@ public class SearchItemRvAdapter extends RecyclerView.Adapter<SearchItemRvAdapte
 
 
             binding.tvTitle.setText(dua.getTitle());
-            binding.tvArabic.setText(dua.getArabic());
-            binding.tvBottom.setText(dua.getBottom());
-            binding.tvReference.setText(dua.getReference());
-            binding.tvTranslation.setText(dua.getTranslations());
-            binding.tvTransliteration.setText(dua.getTransliteration());
-            binding.tvTop.setText(dua.getTop());
+            binding.tvTop.setText(HbUtils.getHtmlText(dua.getTop()));
+            binding.tvArabic.setText(HbUtils.getHtmlText(dua.getArabic()));
+            binding.tvBottom.setText(HbUtils.getHtmlText(dua.getBottom()));
+            binding.tvReference.setText(HbUtils.getHtmlText(dua.getReference()));
+            binding.tvTranslation.setText(HbUtils.getHtmlText(dua.getTranslations()));
+            binding.tvTransliteration.setText(HbUtils.getHtmlText(dua.getTransliteration()));
 
 //        if (holder.getAdapterPosition() == 0) {
 //            binding.topGap.setVisibility(View.INVISIBLE);

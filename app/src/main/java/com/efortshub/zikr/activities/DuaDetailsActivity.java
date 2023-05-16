@@ -7,15 +7,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.TextView;
 
-import com.efortshub.zikr.R;
 import com.efortshub.zikr.databinding.ActivityDuaDetailsBinding;
 import com.efortshub.zikr.databinding.DialogGoToBinding;
-import com.efortshub.zikr.models.Dua;
-import com.efortshub.zikr.models.DuaDetails;
 import com.efortshub.zikr.models.DuaDetailsWithTitle;
 import com.efortshub.zikr.utils.HbUtils;
 
@@ -31,6 +32,8 @@ public class DuaDetailsActivity extends AppCompatActivity {
     List<DuaDetailsWithTitle> duaDetailsWithTitleList = new ArrayList<>();
     DuaDetailsWithTitle dua;
     int max = 328;
+    final int DIRECTION_LEFT = 1, DIRECTION_RIGHT = 2, DIRECTION_UP = 0;
+    private static final String TAG = "hbhbxx";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,52 +41,38 @@ public class DuaDetailsActivity extends AppCompatActivity {
         binding = ActivityDuaDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        int height = binding.getRoot().getHeight();
+        binding.lx.setMinimumHeight(height);
+
         if (HbUtils.getLanguageCode(getApplicationContext()).equals("bn")) {
             max = 422;
         }
 
 
+        binding.tvTitle.setText("");
+        binding.tvArabic.setText("");
+        binding.tvBottom.setText("");
+        binding.tvReference.setText("");
+        binding.tvTranslation.setText("");
+        binding.tvTransliteration.setText("");
+        binding.tvCurrentSegment.setText("");
+
+
         isFull = getIntent().getBooleanExtra("full", true);
         if (isFull) {
             dua = (DuaDetailsWithTitle) getIntent().getSerializableExtra("dua");
-            setDua(dua);
+            setDua(dua, DIRECTION_UP);
         } else {
 
-            int[] arr = getIntent().getIntArrayExtra("dua");
+            dua = (DuaDetailsWithTitle) getIntent().getSerializableExtra("dua");
+            int[] arr = getIntent().getIntArrayExtra("list");
 
             Executors.newSingleThreadExecutor().execute(() -> {
 
-                int index = 0;
-                for (int i : arr) {
-                    Dua d = HbUtils.getDuaOfIndex(getApplicationContext(), i);
-
-                    if (duaDetailsWithTitleList == null)
-                        duaDetailsWithTitleList = new ArrayList<>();
-                    if(d!=null){
-                        if(d.getDetails()!=null){
-                            for (DuaDetails dd : d.getDetails()) {
-                                duaDetailsWithTitleList.add(
-                                        new DuaDetailsWithTitle(
-                                                dd.getDua_segment_id(),
-                                                dd.getTop(),
-                                                dd.getArabic_diacless(),
-                                                dd.getArabic(),
-                                                dd.getTransliteration(),
-                                                dd.getTranslations(),
-                                                dd.getBottom(),
-                                                dd.getReference(),
-                                                dd.getDua_global_id(),
-                                                d.getPageTitle(),
-                                                index++));
-
-                            }
-                        }
-                    }
-
-                }
+                duaDetailsWithTitleList = HbUtils.getDuaOfArray(getApplicationContext(), arr);
 
                 runOnUiThread(() -> {
-                    setDua(duaDetailsWithTitleList.get(0));
+                    setDua(dua != null ? dua : duaDetailsWithTitleList.get(0), DIRECTION_UP);
                     max = duaDetailsWithTitleList.size();
                     initFunctions();
 
@@ -116,13 +105,13 @@ public class DuaDetailsActivity extends AppCompatActivity {
 
 
                     if (dua.getSegmentIndex() < max - 1) {
-                        new Handler(Looper.getMainLooper()).post(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() + 1)));
+                        new Handler(Looper.getMainLooper()).post(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() + 1), DIRECTION_LEFT));
                     }
                 });
 
             } else {
                 if (dua.getSegmentIndex() < max - 1) {
-                    runOnUiThread(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() + 1)));
+                    runOnUiThread(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() + 1), DIRECTION_LEFT));
                 }
             }
 
@@ -141,14 +130,14 @@ public class DuaDetailsActivity extends AppCompatActivity {
                     }
 
                     if (dua.getSegmentIndex() > 0) {
-                        new Handler(Looper.getMainLooper()).post(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() - 1)));
+                        new Handler(Looper.getMainLooper()).post(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() - 1), DIRECTION_RIGHT));
                     }
                 });
 
 
             } else {
                 if (dua.getSegmentIndex() > 0) {
-                    runOnUiThread(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() - 1)));
+                    runOnUiThread(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() - 1), DIRECTION_RIGHT));
                 }
             }
 
@@ -196,7 +185,7 @@ public class DuaDetailsActivity extends AppCompatActivity {
                     if (alertDialog.isShowing()) {
                         alertDialog.cancel();
                     }
-                    setDua(duaDetailsWithTitleList.get(i - 1));
+                    setDua(duaDetailsWithTitleList.get(i - 1), DIRECTION_UP);
                 } else {
                     db.etGoto.setError("Please enter a number");
                 }
@@ -206,20 +195,242 @@ public class DuaDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void setDua(DuaDetailsWithTitle dua) {
+    private void setDua(DuaDetailsWithTitle dua, int direction) {
         Log.d("hbhb", "setDua: setting dua of : " + dua.getSegmentIndex());
+
+        binding.lx.setMinimumHeight(binding.getRoot().getHeight());
 
         if (dua != null) {
             this.dua = dua;
-            binding.tvTitle.setText(dua.getTitle());
-            binding.tvArabic.setText(dua.getArabic());
-            binding.tvBottom.setText(dua.getBottom());
-            binding.tvReference.setText(dua.getReference());
-            binding.tvTranslation.setText(dua.getTranslations());
-            binding.tvTransliteration.setText(dua.getTransliteration());
+
+            binding.tvTitle.setText(HbUtils.getHtmlText(dua.getTitle()));
+
+            String dsi = "(" + dua.getDua_global_id() + (dua.getDua_segment_id().length() > 0 ? "." : "") + dua.getDua_segment_id() + ")<br/> " + (dua.getSegmentIndex() + 1) + (duaDetailsWithTitleList.size() > 0 ? "/" + duaDetailsWithTitleList.size() : "") + " ";
+
+            switch (direction) {
+                case DIRECTION_UP:
+                    animUpSetText(binding.tvTop, HbUtils.getHtmlText(dua.getTop()), 0);
+                    animUpSetText(binding.tvArabic, HbUtils.getHtmlText(dua.getArabic()), 100);
+                    animUpSetText(binding.tvTranslation, HbUtils.getHtmlText(dua.getTranslations()), 200);
+                    animUpSetText(binding.tvTransliteration, HbUtils.getHtmlText(dua.getTransliteration()), 300);
+                    animUpSetText(binding.tvBottom, HbUtils.getHtmlText(dua.getBottom()), 400);
+                    animUpSetText(binding.tvReference, HbUtils.getHtmlText(dua.getReference()), 500);
+                    animUpSetText(binding.tvCurrentSegment, HbUtils.getHtmlText(dsi), 600);
+                    break;
+                case DIRECTION_LEFT:
+                    animLeftSetText(binding.tvTop, HbUtils.getHtmlText(dua.getTop()), 0);
+                    animLeftSetText(binding.tvArabic, HbUtils.getHtmlText(dua.getArabic()), 60);
+                    animLeftSetText(binding.tvTranslation, HbUtils.getHtmlText(dua.getTranslations()), 120);
+                    animLeftSetText(binding.tvTransliteration, HbUtils.getHtmlText(dua.getTransliteration()), 180);
+                    animLeftSetText(binding.tvBottom, HbUtils.getHtmlText(dua.getBottom()), 240);
+                    animLeftSetText(binding.tvReference, HbUtils.getHtmlText(dua.getReference()), 300);
+                    animLeftSetText(binding.tvCurrentSegment, HbUtils.getHtmlText(dsi), 360);
+                    break;
+                case DIRECTION_RIGHT:
+                    animRightSetText(binding.tvTop, HbUtils.getHtmlText(dua.getTop()), 0);
+                    animRightSetText(binding.tvArabic, HbUtils.getHtmlText(dua.getArabic()), 60);
+                    animRightSetText(binding.tvTranslation, HbUtils.getHtmlText(dua.getTranslations()), 120);
+                    animRightSetText(binding.tvTransliteration, HbUtils.getHtmlText(dua.getTransliteration()), 180);
+                    animRightSetText(binding.tvBottom, HbUtils.getHtmlText(dua.getBottom()), 240);
+                    animRightSetText(binding.tvReference, HbUtils.getHtmlText(dua.getReference()), 300);
+                    animRightSetText(binding.tvCurrentSegment, HbUtils.getHtmlText(dsi), 360);
+                    break;
+                default:
+            }
+            /*
+            switch (direction) {
+                case DIRECTION_UP:
+                    animHideUp(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
+                    break;
+                case DIRECTION_LEFT:
+                    animLeft(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
+                    break;
+                case DIRECTION_RIGHT:
+                    animRight(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
+                    break;
+                default:
+            }
+            Log.d(TAG, "setDua: amin cleared");
+
+            binding.tvTitle.setText(HbUtils.getHtmlText(dua.getTitle()));
+            binding.tvArabic.setText(HbUtils.getHtmlText(dua.getArabic()));
+            binding.tvBottom.setText(HbUtils.getHtmlText(dua.getBottom()));
+            binding.tvReference.setText(HbUtils.getHtmlText(dua.getReference()));
+            binding.tvTranslation.setText(HbUtils.getHtmlText(dua.getTranslations()));
+            binding.tvTransliteration.setText(HbUtils.getHtmlText(dua.getTransliteration()));
             String dsi = "(" + dua.getDua_global_id() + (dua.getDua_segment_id().length() > 0 ? "." : "") + dua.getDua_segment_id() + ")\n " + (dua.getSegmentIndex() + 1) + (duaDetailsWithTitleList.size() > 0 ? "/" + duaDetailsWithTitleList.size() : "") + " ";
             binding.tvCurrentSegment.setText(dsi);
+            Log.d(TAG, "setDua: text added");
 
+            switch (direction) {
+                case DIRECTION_UP:
+                    animUp(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
+                    break;
+                case DIRECTION_LEFT:
+                    animLeft(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
+                    break;
+                case DIRECTION_RIGHT:
+                    animRight(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
+                    break;
+                default:
+            }
+
+            Log.d(TAG, "setDua: anim added");*/
         }
     }
+
+    private void animUpSetText(TextView tv, Spanned text, int delay) {
+        int height = binding.getRoot().getHeight();
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+
+            Animation ta = new TranslateAnimation(0, 0, 0, Math.negateExact(View.MeasureSpec.getSize(height)));
+            ta.setDuration(300);
+            ta.setInterpolator(getApplicationContext(), android.R.anim.accelerate_interpolator);
+
+            tv.startAnimation(ta);
+            ta.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    tv.setText("");
+
+                    Animation tx = new TranslateAnimation(0, 0, View.MeasureSpec.getSize(height), 0);
+                    tx.setDuration(600);
+                    tx.setInterpolator(getApplicationContext(), android.R.anim.accelerate_interpolator);
+
+                    tv.startAnimation(tx);
+                    tx.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            tv.setText(text);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+
+        }, delay);
+
+    }
+    private void animLeftSetText(TextView tv, Spanned text, int delay) {
+        int width = binding.getRoot().getWidth();
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+
+            Animation ta = new TranslateAnimation(0, Math.negateExact(View.MeasureSpec.getSize(width)), 0, 0);
+            ta.setDuration(300);
+            ta.setInterpolator(getApplicationContext(), android.R.anim.accelerate_interpolator);
+
+            tv.startAnimation(ta);
+            ta.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    tv.setText("");
+
+                    Animation tx = new TranslateAnimation(View.MeasureSpec.getSize(width), 0, 0, 0);
+                    tx.setDuration(600);
+                    tx.setInterpolator(getApplicationContext(), android.R.anim.accelerate_interpolator);
+
+                    tv.startAnimation(tx);
+                    tx.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            tv.setText(text);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+
+        }, delay);
+
+    }
+    private void animRightSetText(TextView tv, Spanned text, int delay) {
+        int width = binding.getRoot().getWidth();
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+
+            Animation ta = new TranslateAnimation(0,View.MeasureSpec.getSize(width), 0, 0);
+            ta.setDuration(300);
+            ta.setInterpolator(getApplicationContext(), android.R.anim.accelerate_interpolator);
+
+            tv.startAnimation(ta);
+            ta.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    tv.setText("");
+
+                    Animation tx = new TranslateAnimation(Math.negateExact( View.MeasureSpec.getSize(width)), 0,0, 0);
+                    tx.setDuration(600);
+                    tx.setInterpolator(getApplicationContext(), android.R.anim.accelerate_interpolator);
+
+                    tv.startAnimation(tx);
+                    tx.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            tv.setText(text);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+
+        }, delay);
+
+    }
+
 }
