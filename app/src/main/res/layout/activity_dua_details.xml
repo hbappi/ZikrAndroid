@@ -65,80 +65,157 @@
             style="@style/Widget.Material3.CardView.Filled"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/ll_bottom_action"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_wrapper"
-            app:layout_constraintBottom_toTopOf="@id/ll_bottom_action"
-            >
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_wrapper">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/lx"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/tv_top"
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_view"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:translationY="-60dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0"
+                    app:lottie_fileName="lottie/rewardc.json"
+                    app:lottie_imageAssetsFolder="lottie"
+                    app:lottie_loop="false" />
+
+                <ImageView
+                    android:id="@+id/iv_favorite"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:padding="8dp"
+                    android:src="@drawable/baseline_favorite_24"
+                    android:translationY="-200dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/yellow" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/lx"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="#BEA4B4B8"
-                    android:textSize="14sp" />
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_favorite">
 
-                <TextView
-                    android:id="@+id/tv_arabic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="4dp"
-                    android:textColor="@color/yellow"
-                    android:textDirection="rtl"
-                    android:textSize="22sp"
-                    android:textStyle="normal" />
 
-                <TextView
-                    android:id="@+id/tv_translation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="4dp"
-                    android:textColor="#BEFFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="#BEA4B4B8"
+                        android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_transliteration"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="#BED6DD8F"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/tv_arabic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:textColor="@color/yellow"
+                        android:textDirection="rtl"
+                        android:textSize="22sp"
+                        android:textStyle="normal" />
 
-                <TextView
-                    android:id="@+id/tv_bottom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="#BEA4B4B8"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_translation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:textColor="#BEFFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tv_reference"
+                    <TextView
+                        android:id="@+id/tv_transliteration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="#BED6DD8F"
+                        android:textSize="18sp" />
 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textAlignment="textEnd"
-                    android:textSize="11sp"
-                    android:paddingStart="100dp"
-                    android:textDirection="ltr"
-                    tools:ignore="RtlSymmetry" />
+                    <TextView
+                        android:id="@+id/tv_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="#BEA4B4B8"
+                        android:textSize="14sp" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <TextView
+                        android:id="@+id/tv_reference"
 
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:paddingStart="100dp"
+                        android:textAlignment="textEnd"
+                        android:textDirection="ltr"
+                        android:textSize="11sp"
+                        tools:ignore="RtlSymmetry" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/btn_add_to_favorite"
+            android:layout_width="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintWidth_percent="0.8"
+            android:layout_margin="16dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/bg_round_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/ll_bottom_action"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layoutDirection="ltr"
+                android:paddingStart="4dp"
+                android:src="@drawable/baseline_favorite_24"
+                android:textDirection="ltr"
+                android:tint="@color/yellow"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_to_favorite"
+                android:textSize="14sp"
+                android:paddingLeft="8dp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_bottom_action"

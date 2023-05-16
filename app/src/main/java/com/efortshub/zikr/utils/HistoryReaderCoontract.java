@@ -9,8 +9,8 @@ public final class HistoryReaderCoontract {
 
     /* Inner class that defines the table contents */
     public static class HistoryEntry implements BaseColumns {
-        public static final String TABLE_NAME = "history";
         public static final String COLUMN_DUA_GLOBAL_ID = "dua_id";
+        public static final String COLUMN_DUA_SEGMENT_ID = "seg_id";
         public static final String COLUMN_READ_TIME = "time";
     }
 }

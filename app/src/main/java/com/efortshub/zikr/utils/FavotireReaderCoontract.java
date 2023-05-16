@@ -9,7 +9,7 @@ public final class FavotireReaderCoontract {
 
     /* Inner class that defines the table contents */
     public static class FavoriteEntry implements BaseColumns {
-        public static final String TABLE_NAME = "favorite";
         public static final String COLUMN_DUA_GLOBAL_ID = "dua_id";
+        public static final String COLUMN_DUA_SEGMENT_ID = "seg_id";
     }
 }

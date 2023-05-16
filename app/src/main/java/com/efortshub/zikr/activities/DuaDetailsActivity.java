@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
+import com.efortshub.zikr.R;
 import com.efortshub.zikr.databinding.ActivityDuaDetailsBinding;
 import com.efortshub.zikr.databinding.DialogGoToBinding;
 import com.efortshub.zikr.models.DuaDetailsWithTitle;
@@ -208,6 +209,8 @@ public class DuaDetailsActivity extends AppCompatActivity {
 
             String dsi = "(" + dua.getDua_global_id() + (dua.getDua_segment_id().length() > 0 ? "." : "") + dua.getDua_segment_id() + ")<br/> " + (dua.getSegmentIndex() + 1) + (duaDetailsWithTitleList.size() > 0 ? "/" + duaDetailsWithTitleList.size() : "") + " ";
 
+            checkFavorite(dua);
+
             switch (direction) {
                 case DIRECTION_UP:
                     animUpSetText(binding.tvTop, HbUtils.getHtmlText(dua.getTop()), 0);
@@ -240,48 +243,36 @@ public class DuaDetailsActivity extends AppCompatActivity {
             }
 
 
-            DbUtils.addToHistory(getApplicationContext(), Integer.parseInt(dua.getDua_global_id()));
-            DbUtils.addToFavorite(getApplicationContext(), Integer.parseInt(dua.getDua_global_id()));
-            /*
-            switch (direction) {
-                case DIRECTION_UP:
-                    animHideUp(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
-                    break;
-                case DIRECTION_LEFT:
-                    animLeft(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
-                    break;
-                case DIRECTION_RIGHT:
-                    animRight(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
-                    break;
-                default:
-            }
-            Log.d(TAG, "setDua: amin cleared");
+            DbUtils.addToHistory(getApplicationContext(), Integer.parseInt(dua.getDua_global_id()), dua.getDua_segment_id());
+            DbUtils.addToFavorite(getApplicationContext(), Integer.parseInt(dua.getDua_global_id()), dua.getDua_segment_id());
 
-            binding.tvTitle.setText(HbUtils.getHtmlText(dua.getTitle()));
-            binding.tvArabic.setText(HbUtils.getHtmlText(dua.getArabic()));
-            binding.tvBottom.setText(HbUtils.getHtmlText(dua.getBottom()));
-            binding.tvReference.setText(HbUtils.getHtmlText(dua.getReference()));
-            binding.tvTranslation.setText(HbUtils.getHtmlText(dua.getTranslations()));
-            binding.tvTransliteration.setText(HbUtils.getHtmlText(dua.getTransliteration()));
-            String dsi = "(" + dua.getDua_global_id() + (dua.getDua_segment_id().length() > 0 ? "." : "") + dua.getDua_segment_id() + ")\n " + (dua.getSegmentIndex() + 1) + (duaDetailsWithTitleList.size() > 0 ? "/" + duaDetailsWithTitleList.size() : "") + " ";
-            binding.tvCurrentSegment.setText(dsi);
-            Log.d(TAG, "setDua: text added");
-
-            switch (direction) {
-                case DIRECTION_UP:
-                    animUp(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
-                    break;
-                case DIRECTION_LEFT:
-                    animLeft(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
-                    break;
-                case DIRECTION_RIGHT:
-                    animRight(0, binding.tvTop, binding.tvArabic, binding.tvTranslation, binding.tvTransliteration, binding.tvBottom, binding.tvReference);
-                    break;
-                default:
-            }
-
-            Log.d(TAG, "setDua: anim added");*/
         }
+    }
+
+    private void checkFavorite(DuaDetailsWithTitle dua) {
+
+        Animation ta = new TranslateAnimation(0, 0, Math.negateExact(View.MeasureSpec.getSize(1000)), 0);
+        ta.setDuration(600);
+        ta.setInterpolator(getApplicationContext(), android.R.anim.accelerate_interpolator);
+
+        binding.ivFavorite.startAnimation(ta);
+        ta.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                binding.ivFavorite.setTranslationY(0);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                binding.lottieView.playAnimation();
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     private void animUpSetText(TextView tv, Spanned text, int delay) {

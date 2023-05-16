@@ -26,7 +26,6 @@
     <string name="go_to">Go To</string>
     <string name="go">Go</string>
     <string name="favorite">Favorite</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="history">History</string>
+    <string name="add_to_favorite">Add to favorite</string>
 </resources>

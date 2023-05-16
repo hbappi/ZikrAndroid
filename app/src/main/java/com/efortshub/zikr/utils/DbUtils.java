@@ -14,24 +14,37 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 public class DbUtils {
-    public static void addToHistory(Context context, int duaId) {
+
+    public static String getHistoryTable(Context c){
+        if(HbUtils.getLanguageCode(c).equals("bn")){
+            return "history_bn";
+        }else return "history_en";
+    }
+    public static String getFavoriteTable(Context c){
+        if(HbUtils.getLanguageCode(c).equals("bn")){
+            return "favorite_bn";
+        }else return "favorite_en";
+    }
+    public static void addToHistory(Context context, int duaId, String segmentId) {
         Executors.newSingleThreadExecutor().execute(() -> {
             SQLiteDatabase db = DbHelper.getInstance(context).getReadableDatabase();
             ContentValues values = new ContentValues();
             values.put(HistoryReaderCoontract.HistoryEntry.COLUMN_DUA_GLOBAL_ID, duaId);
+            values.put(HistoryReaderCoontract.HistoryEntry.COLUMN_DUA_SEGMENT_ID, segmentId);
             values.put(HistoryReaderCoontract.HistoryEntry.COLUMN_READ_TIME, System.currentTimeMillis() + "");
-            db.insert(HistoryReaderCoontract.HistoryEntry.TABLE_NAME, null, values);
+            db.insertWithOnConflict(getHistoryTable(context), null, values, SQLiteDatabase.CONFLICT_REPLACE);
 
         });
 
     }
 
-    public static void addToFavorite(Context context, int duaId) {
+    public static void addToFavorite(Context context, int duaId, String segmentId) {
         Executors.newSingleThreadExecutor().execute(() -> {
             SQLiteDatabase db = DbHelper.getInstance(context).getReadableDatabase();
             ContentValues values = new ContentValues();
             values.put(FavotireReaderCoontract.FavoriteEntry.COLUMN_DUA_GLOBAL_ID, duaId);
-            db.insertWithOnConflict(FavotireReaderCoontract.FavoriteEntry.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_ROLLBACK);
+            values.put(FavotireReaderCoontract.FavoriteEntry.COLUMN_DUA_SEGMENT_ID, segmentId);
+            db.insertWithOnConflict(getFavoriteTable(context), null, values, SQLiteDatabase.CONFLICT_REPLACE);
 
         });
 
@@ -46,6 +59,7 @@ public class DbUtils {
         String[] projection = {
                 BaseColumns._ID,
                 HistoryReaderCoontract.HistoryEntry.COLUMN_DUA_GLOBAL_ID,
+                HistoryReaderCoontract.HistoryEntry.COLUMN_DUA_SEGMENT_ID,
                 HistoryReaderCoontract.HistoryEntry.COLUMN_READ_TIME
         };
 
@@ -58,8 +72,8 @@ public class DbUtils {
                 HistoryReaderCoontract.HistoryEntry.COLUMN_READ_TIME + " DESC";
 
         Cursor cursor = db.query(
-                HistoryReaderCoontract.HistoryEntry.TABLE_NAME,   // The table to query
-                projection,             // The array of columns to return (pass null to get all)
+                getHistoryTable(context),   // The table to query
+                null,             // The array of columns to return (pass null to get all)
                 null,              // The columns for the WHERE clause
                 null,          // The values for the WHERE clause
                 null,                   // don't group the rows
@@ -79,7 +93,10 @@ public class DbUtils {
             String time = cursor.getString(
                     cursor.getColumnIndexOrThrow(HistoryReaderCoontract.HistoryEntry.COLUMN_READ_TIME)
             );
-            list.add(new History(itemId, duaId, Integer.parseInt(time)));
+            String segId = cursor.getString(
+                    cursor.getColumnIndexOrThrow(HistoryReaderCoontract.HistoryEntry.COLUMN_DUA_SEGMENT_ID)
+            );
+            list.add(new History(itemId, duaId, Long.parseLong(time), segId));
         }
 
         return list;
@@ -93,7 +110,8 @@ public class DbUtils {
 // you will actually use after this query.
         String[] projection = {
                 BaseColumns._ID,
-                FavotireReaderCoontract.FavoriteEntry.COLUMN_DUA_GLOBAL_ID
+                FavotireReaderCoontract.FavoriteEntry.COLUMN_DUA_GLOBAL_ID,
+                FavotireReaderCoontract.FavoriteEntry.COLUMN_DUA_SEGMENT_ID
         };
 
 // Filter results WHERE "title" = 'My Title'
@@ -105,8 +123,8 @@ public class DbUtils {
                 FavotireReaderCoontract.FavoriteEntry.COLUMN_DUA_GLOBAL_ID + " ASC";
 
         Cursor cursor = db.query(
-                FavotireReaderCoontract.FavoriteEntry.TABLE_NAME,   // The table to query
-                projection,             // The array of columns to return (pass null to get all)
+                getFavoriteTable(context),   // The table to query
+                null,             // The array of columns to return (pass null to get all)
                 null,              // The columns for the WHERE clause
                 null,          // The values for the WHERE clause
                 null,                   // don't group the rows
@@ -123,7 +141,10 @@ public class DbUtils {
             int duaId = cursor.getInt(
                     cursor.getColumnIndexOrThrow(FavotireReaderCoontract.FavoriteEntry.COLUMN_DUA_GLOBAL_ID)
             );
-            list.add(new Favorite(itemId, duaId));
+            String segId = cursor.getString(
+                    cursor.getColumnIndexOrThrow(FavotireReaderCoontract.FavoriteEntry.COLUMN_DUA_SEGMENT_ID)
+            );
+            list.add(new Favorite(itemId, duaId, segId));
         }
 
         return list;
