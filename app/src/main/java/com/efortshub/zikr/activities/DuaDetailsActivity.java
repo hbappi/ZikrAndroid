@@ -175,14 +175,14 @@ public class DuaDetailsActivity extends AppCompatActivity {
                 }
 
 
-                if (dua.getSegmentIndex() < max - 1) {
+                if (dua.getSegmentIndex() < duaDetailsWithTitleList.size()-1) {
                     runOnUiThread(() -> setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() + 1), DIRECTION_LEFT, forceNoDelay));
                 } else
                     runOnUiThread(this::backSwipeToZero);
             });
 
         } else {
-            if (dua.getSegmentIndex() < max - 1) {
+            if (dua.getSegmentIndex() < duaDetailsWithTitleList.size()-1) {
                 setDua(duaDetailsWithTitleList.get(dua.getSegmentIndex() + 1), DIRECTION_LEFT, forceNoDelay);
             } else
                 runOnUiThread(this::backSwipeToZero);
