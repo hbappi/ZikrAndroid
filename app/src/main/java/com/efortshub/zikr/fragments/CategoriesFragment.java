@@ -14,20 +14,32 @@ import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.OvershootInterpolator;
 
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.efortshub.zikr.R;
 import com.efortshub.zikr.activities.CategoryWiseLIstActivity;
+import com.efortshub.zikr.activities.DuaDetailsActivity;
+import com.efortshub.zikr.activities.MainActivity;
+import com.efortshub.zikr.adapter.HistoryItemRvAdapter;
+import com.efortshub.zikr.adapter.HistoryItemRvTransparentAdapter;
 import com.efortshub.zikr.databinding.FragmentCategoriesBinding;
 import com.efortshub.zikr.interfaces.BottomNavAnimationListener;
 import com.efortshub.zikr.models.Dua;
 import com.efortshub.zikr.models.DuaDetails;
+import com.efortshub.zikr.models.DuaDetailsWithHistory;
+import com.efortshub.zikr.models.DuaDetailsWithTitle;
+import com.efortshub.zikr.models.History;
+import com.efortshub.zikr.utils.DbUtils;
 import com.efortshub.zikr.utils.HbConsts;
 import com.efortshub.zikr.utils.HbUtils;
 import com.google.android.material.card.MaterialCardView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -35,6 +47,8 @@ import java.util.Random;
 import eightbitlab.com.blurview.BlurView;
 import eightbitlab.com.blurview.RenderEffectBlur;
 import eightbitlab.com.blurview.RenderScriptBlur;
+import jp.wasabeef.recyclerview.adapters.AnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,6 +77,14 @@ public class CategoriesFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        loadRandomDua();
+        loadHistory();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -70,7 +92,8 @@ public class CategoriesFragment extends Fragment {
 
 //        blurViews(binding.blur1);
 
-        loadRandomDua();
+        HbUtils.blurViews(requireActivity(),15f,  binding.blurMain);
+
         startAnimationLoop(R.anim.anim_fade_out, 0,
                 binding.btnBedtime,
                 binding.btnMorningEvening,
@@ -90,7 +113,57 @@ public class CategoriesFragment extends Fragment {
         );
 
 
+
         return binding.getRoot();
+    }
+
+
+    private void loadHistory() {
+
+        List<History> hs = DbUtils.getAllHistory(requireContext());
+        int size = Math.min(hs.size(), 5);
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = hs.get(i).getDuaId();
+        }
+
+
+        List<DuaDetailsWithTitle> dx = HbUtils.getDuaOfArray(requireContext(), array);
+        List<DuaDetailsWithHistory> duaDetailsWithTitleList = new ArrayList<>();
+
+        for (DuaDetailsWithTitle d : dx) {
+            for (History f : hs) {
+                if (f.getDuaId() == Integer.parseInt(d.getDua_global_id())) {
+                    if (d.getDua_segment_id().equals(f.getSegmentId())) {
+                        duaDetailsWithTitleList.add(new DuaDetailsWithHistory(d.getDua_segment_id(), d.getTop(), d.getArabic_diacless(), d.getArabic(), d.getTransliteration(), d.getTranslations(), d.getBottom(), d.getReference(), d.getDua_global_id(), d.getTitle(), d.getSegmentIndex(), f.getMilliseconds()));
+                    }
+                }
+
+            }
+        }
+
+
+        HistoryItemRvTransparentAdapter adapter = new HistoryItemRvTransparentAdapter(duaDetailsWithTitleList, details -> {
+            Intent i = new Intent(requireActivity(), DuaDetailsActivity.class);
+            i.putExtra("dua", details);
+            i.putExtra("full", false);
+            i.putExtra("list", array);
+
+            startActivity(i);
+
+        });
+        binding.rvHistory.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
+        AnimationAdapter animAdapter = new ScaleInAnimationAdapter(adapter);
+        animAdapter.setDuration(500);
+        animAdapter.setStartPosition(0);
+        animAdapter.setInterpolator(new OvershootInterpolator(2f));
+        animAdapter.setStartPosition(0);
+        animAdapter.setFirstOnly(false);
+        animAdapter.setHasStableIds(false);
+        binding.rvHistory.setAdapter(animAdapter);
+
+
+
     }
 
     private void setOpenDetailsListener(MaterialCardView btn, int[] arr, String title) {
@@ -105,39 +178,6 @@ public class CategoriesFragment extends Fragment {
 
     }
 
-    private void blurViews(BlurView... views) {
-
-        for (BlurView v : views) {
-
-            float radius = 20f;
-
-            View decorView = requireActivity().getWindow().getDecorView();
-            // ViewGroup you want to start blur from. Choose root as close to BlurView in hierarchy as possible.
-            ViewGroup rootView = decorView.findViewById(android.R.id.content);
-
-            // Optional:
-            // Set drawable to draw in the beginning of each blurred frame.
-            // Can be used in case your layout has a lot of transparent space and your content
-            // gets a too low alpha value after blur is applied.
-            Drawable windowBackground =
-                    AppCompatResources.getDrawable(requireContext(), R.drawable.bg);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                v.setupWith(rootView, new RenderEffectBlur()) // or RenderEffectBlur
-                        .setFrameClearDrawable(windowBackground) // Optional
-                        .setBlurRadius(radius);
-            } else {
-                v.setupWith(rootView, new RenderScriptBlur(requireContext())) // or RenderEffectBlur
-                        .setFrameClearDrawable(windowBackground) // Optional
-                        .setBlurRadius(radius);
-
-            }
-            v.setOutlineProvider(ViewOutlineProvider.BOUNDS);
-            v.setClipToOutline(true);
-
-        }
-
-    }
 
     private void startAnimationLoop(int res, int startFrom, View... view) {
 

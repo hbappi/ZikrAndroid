@@ -11,11 +11,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#D80A222E"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/bnav_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.cardview.widget.CardView
@@ -23,25 +23,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_margin="8dp"
+            android:elevation="2dp"
             android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:textSize="12sp"
             app:cardBackgroundColor="@color/yellow"
             app:cardCornerRadius="16dp"
-            android:layout_margin="8dp"
-            android:elevation="2dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <TextView
                 android:id="@+id/tv_change_language"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="2dp"
-                android:textColor="@color/dark_blue"
-                android:paddingBottom="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="12dp"
+                android:paddingTop="2dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="2dp"
                 android:text="@string/english"
-                />
+                android:textColor="@color/dark_blue" />
         </androidx.cardview.widget.CardView>
 
         <FrameLayout
@@ -49,22 +49,325 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blur_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bnav_main">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="100dp"
+            android:paddingBottom="100dp"
+            android:clipToPadding="false">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center_horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:srcCompat="@mipmap/ic_launcher_round"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:textSize="22sp"
+                    android:textColor="@color/yellow"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_version"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="300dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_app"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/yellow"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_about_app"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="60dp"
+                        app:cardElevation="5dp"
+                        style="@style/Widget.Material3.CardView.Outlined">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            app:srcCompat="@drawable/efortshub"/>
+                    </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/links_of_efortshub"
+                        android:layout_marginTop="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/light_yellow"
+                        />
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="true"
+                        android:scrollbarSize="0dp">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            >
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/website"
+                                android:textColor="@color/light_blue"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+
+                                android:id="@+id/btn_efortshub"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/github"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_efortshub_github"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/facebook"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_efortshub_facebook"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/youtube"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_efortshub_youtube"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/linkedin"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_efortshub_linkedin"/>
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/instagram"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_efortshub_instagram"/>
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tumblr"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_efortshub_tumblr"/>
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/twitter"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_efortshub_twitter"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </HorizontalScrollView>
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_developer"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginTop="12dp"
+                        android:textColor="@color/yellow"
+                        />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="60dp"
+                        app:cardElevation="5dp"
+                        style="@style/Widget.Material3.CardView.Outlined">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            app:srcCompat="@drawable/hbappi"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/h_bappi"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:textColor="@color/yellow"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/a_cross_platform_software_developer_including_android_ios_windows_linux_mac_n_nandroid_java_android_studio_nandroid_ios_react_native_nwindows_linux_mac_javafx_nwindows_linux_mac_electron_js_nweb_design_html_css_js_vanilla_nweb_design_react_js_material_ui_nweb_development_mern_stack_but_not_mongodb_i_use_mysql_napi_development_python_nodejs_php_google_app_script_etc_nserver_building_nginx_apache2_type_http_hls_rtmp_rtsp_vod_xtream_codes_api_etc"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/links_of_h_bappi"
+                        android:layout_marginTop="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/light_yellow"
+                        />
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="true">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            >
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hackerrank"
+                                android:textColor="@color/light_blue"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:id="@+id/btn_hackerrank"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/github"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_hbappi_github"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/facebook"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_hbappi_facebook"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/youtube"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_hbappi_youtube"/>
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LinkedIn"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="2dp"
+                                android:textColor="@color/light_blue"
+                                android:id="@+id/btn_hbappi_linkedin"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </HorizontalScrollView>
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/open_source_info"
+                        android:textStyle="bold"
+                        android:layout_marginTop="12dp"
+                        android:textColor="@color/yellow"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_opensource_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        />
+
+
+
+
+
+
+
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </ScrollView>
+    </eightbitlab.com.blurview.BlurView>
 
 
     <com.efortshub.zikr.views.HbBottomNav
         android:id="@+id/bnav_main"
-        android:animateLayoutChanges="true"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_home"/>
+        app:menu="@menu/bottom_nav_home" />
 </androidx.constraintlayout.widget.ConstraintLayout>

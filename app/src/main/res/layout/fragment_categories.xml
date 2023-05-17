@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +9,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="200dp"
+        android:clipToPadding="false">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -916,4 +919,70 @@
     </ScrollView>
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <FrameLayout
+            android:id="@+id/bottom_sheet_frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?attr/bottomSheetDialogTheme"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            app:behavior_peekHeight="58dp"
+            >
+
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blur_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:layout_gravity="center"
+                        android:background="@color/yellow"
+                        android:alpha="0.3"
+                        android:orientation="vertical">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="100dp"
+                            android:layout_height="5dp"
+                            android:background="@drawable/bg_round_corner"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/where_you_left"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/yellow"
+                        android:padding="8dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rv_history"
+                        android:layout_margin="8dp"
+                        />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </eightbitlab.com.blurview.BlurView>
+        </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

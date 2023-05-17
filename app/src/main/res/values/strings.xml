@@ -28,4 +28,28 @@
     <string name="favorite">Favorite</string>
     <string name="history">History</string>
     <string name="add_to_favorite">Add to favorite</string>
+    <string name="str_added_to_fav">Added to favorite</string>
+    <string name="remove">Remove</string>
+    <string name="segment_found">Segment found for dua %s</string>
+    <string name="segment_fav_warning">You will see favorite active for all segment of dua %s . In favorite list you will only see selected segment.</string>
+    <string name="ok">OK</string>
+    <string name="where_you_left">Where you left</string>
+    <string name="about">About</string>
+    <string name="txt_about_app">An Islamic App provided by eFortsHub. All resources are collected from online opensource projects. Please inform us for any kind of issue.</string>
+    <string name="about_app">About App</string>
+    <string name="website">Website</string>
+    <string name="facebook">Facebook</string>
+    <string name="github">GitHub</string>
+    <string name="youtube">Youtube</string>
+    <string name="links_of_h_bappi" translatable="false">Links of H. Bappi</string>
+    <string name="a_cross_platform_software_developer_including_android_ios_windows_linux_mac_n_nandroid_java_android_studio_nandroid_ios_react_native_nwindows_linux_mac_javafx_nwindows_linux_mac_electron_js_nweb_design_html_css_js_vanilla_nweb_design_react_js_material_ui_nweb_development_mern_stack_but_not_mongodb_i_use_mysql_napi_development_python_nodejs_php_google_app_script_etc_nserver_building_nginx_apache2_type_http_hls_rtmp_rtsp_vod_xtream_codes_api_etc" translatable="false">A Cross Platform Software developer including Android, iOS, Windows,Linux,Mac.\n\nAndroid (Java- Android Studio)\nAndroid/iOS (React Native)\nWindows/Linux/Mac (JavaFX)\nWindows/Linux/Mac (Electron JS)\nWeb Design (HTML, CSS, JS - Vanilla)\nWeb Design (React JS + Material UI)\nWeb Development(MERN Stack [but not MongoDB, I use MySQL])\nAPI Development (Python, NodeJS, PHP, Google App SCript etc.)\nServer Building (NGINX, Apache2 , type: [HTTP, HLS, RTMP, RTSP, VOD, Xtream Codes API etc.])</string>
+    <string name="h_bappi" translatable="false">H. Bappi</string>
+    <string name="about_developer">About Developer</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="links_of_efortshub" translatable="false">Links of eFortsHub</string>
+    <string name="open_source_info">Open source libraries and projects I used to build this app in a fastest way</string>
+    <string name="instagram">Instagram</string>
+    <string name="tumblr">Tumblr</string>
+    <string name="twitter">Twitter</string>
+    <string name="hackerrank">Hackerrank</string>
 </resources>

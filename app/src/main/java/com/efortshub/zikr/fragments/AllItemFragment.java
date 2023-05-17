@@ -72,46 +72,51 @@ public class AllItemFragment extends Fragment {
 
 
                     new Handler(Looper.getMainLooper()).post(() -> {
-                        binding.rvMain.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-                        AnimationAdapter animAdapter = new ScaleInAnimationAdapter(adapter);
-                        animAdapter.setDuration(500);
-                        animAdapter.setStartPosition(0);
-                        animAdapter.setInterpolator(new OvershootInterpolator(2f));
-                        animAdapter.setStartPosition(0);
-                        animAdapter.setFirstOnly(false);
-                        animAdapter.setHasStableIds(false);
-                        binding.rvMain.setAdapter(animAdapter);
-                        binding.etSearch.addTextChangedListener(new TextWatcher() {
-                            @Override
-                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        try{
+                            binding.rvMain.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
+                            AnimationAdapter animAdapter = new ScaleInAnimationAdapter(adapter);
+                            animAdapter.setDuration(500);
+                            animAdapter.setStartPosition(0);
+                            animAdapter.setInterpolator(new OvershootInterpolator(2f));
+                            animAdapter.setStartPosition(0);
+                            animAdapter.setFirstOnly(false);
+                            animAdapter.setHasStableIds(false);
+                            binding.rvMain.setAdapter(animAdapter);
+                            binding.etSearch.addTextChangedListener(new TextWatcher() {
+                                @Override
+                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                            }
+                                }
 
-                            @Override
-                            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                                List<DuaDetailsWithTitle> duaFilteredList = new ArrayList<>();
+                                @Override
+                                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                    List<DuaDetailsWithTitle> duaFilteredList = new ArrayList<>();
 
-                                if (s.toString().trim().isEmpty()) {
-                                    duaFilteredList.addAll(duaList);
-                                } else {
-                                    for (DuaDetailsWithTitle dd : duaList) {
-                                        if (dd.getTitle().trim().toLowerCase().contains(s.toString().trim().toLowerCase())) {
-                                            duaFilteredList.add(dd);
+                                    if (s.toString().trim().isEmpty()) {
+                                        duaFilteredList.addAll(duaList);
+                                    } else {
+                                        for (DuaDetailsWithTitle dd : duaList) {
+                                            if (dd.getTitle().trim().toLowerCase().contains(s.toString().trim().toLowerCase())) {
+                                                duaFilteredList.add(dd);
+                                            }
                                         }
                                     }
+                                    adapter.setList(duaFilteredList);
+                                    animAdapter.notifyDataSetChanged();
+
                                 }
-                                adapter.setList(duaFilteredList);
-                                animAdapter.notifyDataSetChanged();
 
-                            }
+                                @Override
+                                public void afterTextChanged(Editable s) {
 
-                            @Override
-                            public void afterTextChanged(Editable s) {
+                                }
+                            });
+                            listener.shouldShowBottomNavNow();
+                            binding.rvMain.setVisibility(View.VISIBLE);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
 
-                            }
-                        });
-                        listener.shouldShowBottomNavNow();
-                        binding.rvMain.setVisibility(View.VISIBLE);
                     });
                 });
 

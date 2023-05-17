@@ -26,4 +26,21 @@
     <string name="go">যান</string>
     <string name="favorite">প্রিয়</string>
     <string name="history">ইতিহাস</string>
+    <string name="add_to_favorite">পছন্দে যুক্ত করুন</string>
+    <string name="str_added_to_fav">পছন্দে যুক্ত আছে</string>
+    <string name="remove">মুছে ফেলুন</string>
+    <string name="segment_found">দুয়া %s এর সেগমেন্ট উপলব্ধ</string>
+    <string name="segment_fav_warning">দুয়া %s এর সকল সেগমেন্ট এ আপনি ফেভারিট একটিভ দেখতে পারবেন, কিন্তু ফেভারিট লিস্ট থেকে শুধু নির্বাচিত সেগমেন্ট টা দেখতে পারবেন।</string>
+    <string name="ok">ঠিক আছে</string>
+    <string name="where_you_left">যেখানে রেখে গেছেন</string>
+    <string name="about">সম্পর্কে</string>
+    <string name="txt_about_app">eFortsHub দ্বারা প্রদত্ত একটি ইসলামিক অ্যাপ। সমস্ত তথ্য অনলাইন ওপেনসোর্স প্রকল্পগুলি থেকে সংগ্রহ করা হয়েছে। কোন ধরনের সমস্যার জন্য আমাদের জানান.</string>
+    <string name="about_app">এপ সম্পর্কে</string>
+    <string name="website">ওয়েবসাইট</string>
+    <string name="facebook">ফেসবুক</string>
+    <string name="github">গিটহাব</string>
+    <string name="youtube">ইউটিউব</string>
+    <string name="about_developer">ডেভেলপার সম্পর্ককে</string>
+    <string name="linkedin">লিংকডইন</string>
+    <string name="open_source_info">যে মুক্ত লাইব্রেবি এবং প্রজেক্ট গুলো আমি এই এপ এ ব্যাবহার করেছি দ্রুত কাজ সম্পন্ন করার জন্য</string>
 </resources>

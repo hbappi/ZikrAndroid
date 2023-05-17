@@ -2,10 +2,19 @@ package com.efortshub.zikr.utils;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 
+import androidx.appcompat.content.res.AppCompatResources;
+
+import com.efortshub.zikr.R;
 import com.efortshub.zikr.models.Dua;
 import com.efortshub.zikr.models.DuaDetails;
 import com.efortshub.zikr.models.DuaDetailsWithTitle;
@@ -17,8 +26,46 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderEffectBlur;
+import eightbitlab.com.blurview.RenderScriptBlur;
+
 public class HbUtils {
 
+
+    public static  void blurViews(Activity activity, float radius, BlurView... views) {
+
+        for (BlurView v : views) {
+
+//            float radius = 15f;
+
+            View decorView = activity.getWindow().getDecorView();
+            // ViewGroup you want to start blur from. Choose root as close to BlurView in hierarchy as possible.
+            ViewGroup rootView = decorView.findViewById(android.R.id.content);
+
+            // Optional:
+            // Set drawable to draw in the beginning of each blurred frame.
+            // Can be used in case your layout has a lot of transparent space and your content
+            // gets a too low alpha value after blur is applied.
+            Drawable windowBackground =
+                    AppCompatResources.getDrawable(activity, R.drawable.bg);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                v.setupWith(rootView, new RenderEffectBlur()) // or RenderEffectBlur
+                        .setFrameClearDrawable(windowBackground) // Optional
+                        .setBlurRadius(radius);
+            } else {
+                v.setupWith(rootView, new RenderScriptBlur(activity)) // or RenderEffectBlur
+                        .setFrameClearDrawable(windowBackground) // Optional
+                        .setBlurRadius(radius);
+
+            }
+            v.setOutlineProvider(ViewOutlineProvider.BOUNDS);
+            v.setClipToOutline(true);
+
+        }
+
+    }
     public static String getLanguageCode(Context context) {
 
         String code = context.getSharedPreferences(HbConsts.KEY_SAHRED_PREF, MODE_PRIVATE)

@@ -6,6 +6,32 @@ public class HbConsts {
     public static final String DB_NAME = "";
 
 
+    public static final String openSourceList = "androidx.appcompat" +
+            "\ncom.google.android.material" +
+            "\nandroidx.constraintlayout" +
+            "\ncom.github.hbappi:EfHttpGet"+
+            "\nandroidx.multidex" +
+            "\ncom.google.code.gson" +
+            "\njp.wasabeef:recyclerview-animators"+
+            "\ncom.facebook.shimmer"+
+            "\ncom.github.Dimezis:BlurView"+
+            "\ncom.airbnb.android:lottie";
+
+    public static final String linkEfortshubWebsite = "http://efortshub.com";
+    public static final String linkEfortshubGithub = "https://github.com/efortshub";
+    public static final String linkEfortshubFacebook = "https://facebook.com/efortshub";
+    public static final String linkEfortshubYoutube = "https://youtube.com/@eFortsHub";
+    public static final String linkEfortshubLinkedIn = "https://www.linkedin.com/company/efortshub";
+    public static final String linkEfortshubInstagram = "https://www.instagram.com/efortshub";
+    public static final String linkEfortshubTumblr = "https://efortshub.tumblr.com";
+    public static final String linkEfortshubTwitter = "https://twitter.com/efortshub";
+
+    public static final String linkHbappiGithub = "https://github.com/hbappi";
+    public static final String linkHbappiFacebook = "https://facebook.com/h.bappi.hp";
+    public static final String linkHbappiYoutube = "https://www.youtube.com/@hbappi-official/about";
+    public static final String linkHbappiLinkedIn = "https://www.linkedin.com/in/hbappi";
+    public static final String linkHbappiHackerrank = "https://www.hackerrank.com/eFortsHub";
+
     public static final int[] CL_BN_SLEEPING = {2, 3, 4, 5, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 385, 386, 387, 388, 389, 390};
     public static final int[] CL_BN_MORNING_EVENING = {
             1, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89,

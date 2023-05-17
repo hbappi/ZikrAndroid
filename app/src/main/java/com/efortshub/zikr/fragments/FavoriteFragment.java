@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Toast;
 
 import com.efortshub.zikr.R;
 import com.efortshub.zikr.activities.DuaDetailsActivity;
@@ -58,6 +59,13 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        Toast.makeText(requireActivity(), "resume with: "+ (isFavoriteTab?"Favorite":"History"), Toast.LENGTH_SHORT).show();
+        toggleFavoriteHistory(isFavoriteTab);
     }
 
     @Override
