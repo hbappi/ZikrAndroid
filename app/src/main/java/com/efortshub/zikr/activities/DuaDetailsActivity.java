@@ -3,6 +3,7 @@ package com.efortshub.zikr.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -207,11 +208,16 @@ public class DuaDetailsActivity extends AppCompatActivity {
 
             DialogGoToBinding db = DialogGoToBinding.inflate(getLayoutInflater(), null, false);
 
+            HbUtils.blurViews(DuaDetailsActivity.this, 5f, db.blurMain);
+
             builder.setCancelable(true);
             builder.setView(db.getRoot());
 
             AlertDialog alertDialog = builder.create();
+            alertDialog.getWindow().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.bg_transparent, null));
+
             alertDialog.show();
+
 
             db.etGoto.setHint("1 - " + duaDetailsWithTitleList.size());
 
@@ -456,10 +462,13 @@ public class DuaDetailsActivity extends AppCompatActivity {
                             sb.tvTitle.setText(String.format(getResources().getString(R.string.segment_found), dua.getTitle()));
                             sb.tvDesctiption.setText(String.format(getResources().getString(R.string.segment_fav_warning), dua.getTitle()));
 
+                            HbUtils.blurViews(DuaDetailsActivity.this, 5f, sb.blurMain);
+
                             AlertDialog ad = new AlertDialog.Builder(DuaDetailsActivity.this)
                                     .setView(sb.getRoot())
                                     .setCancelable(false)
                                     .create();
+                            ad.getWindow().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.bg_transparent, null));
                             sb.btnGo.setOnClickListener(v1 -> {
                                 ad.dismiss();
                                 DbUtils.addToFavorite(getApplicationContext(), Integer.parseInt(dua.getDua_global_id()), dua.getDua_segment_id());
