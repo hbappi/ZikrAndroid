@@ -1,55 +1,31 @@
 package com.efortshub.zikr.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
-import android.widget.FrameLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.efortshub.zikr.R;
-import com.efortshub.zikr.adapter.HistoryItemRvAdapter;
 import com.efortshub.zikr.databinding.ActivityMainBinding;
 import com.efortshub.zikr.fragments.AllItemFragment;
 import com.efortshub.zikr.fragments.CategoriesFragment;
 import com.efortshub.zikr.fragments.FavoriteFragment;
 import com.efortshub.zikr.fragments.SearchFragment;
-import com.efortshub.zikr.interfaces.BottomNavAnimationListener;
-import com.efortshub.zikr.models.DuaDetailsWithHistory;
-import com.efortshub.zikr.models.DuaDetailsWithTitle;
-import com.efortshub.zikr.models.History;
-import com.efortshub.zikr.utils.DbHelper;
-import com.efortshub.zikr.utils.DbUtils;
 import com.efortshub.zikr.utils.HbConsts;
 import com.efortshub.zikr.utils.HbUtils;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-
-import jp.wasabeef.recyclerview.adapters.AnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -75,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        HbUtils.blurViews(MainActivity.this, 20f, binding.blurMain);
+//        HbUtils.blurViews(MainActivity.this, 20f, binding.blurMain);
         binding.blurMain.setVisibility(View.GONE);
 
         initInfoButtons();

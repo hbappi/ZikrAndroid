@@ -54,13 +54,14 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <eightbitlab.com.blurview.BlurView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/blur_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="#E91F364A"
         app:layout_constraintBottom_toTopOf="@id/bnav_main">
         <ScrollView
             android:layout_width="match_parent"
@@ -356,7 +357,7 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </ScrollView>
-    </eightbitlab.com.blurview.BlurView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <com.efortshub.zikr.views.HbBottomNav

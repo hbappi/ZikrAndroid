@@ -208,7 +208,7 @@ public class DuaDetailsActivity extends AppCompatActivity {
 
             DialogGoToBinding db = DialogGoToBinding.inflate(getLayoutInflater(), null, false);
 
-            HbUtils.blurViews(DuaDetailsActivity.this, 5f, db.blurMain);
+//            HbUtils.blurViews(DuaDetailsActivity.this, 5f, db.blurMain);
 
             builder.setCancelable(true);
             builder.setView(db.getRoot());
@@ -462,7 +462,7 @@ public class DuaDetailsActivity extends AppCompatActivity {
                             sb.tvTitle.setText(String.format(getResources().getString(R.string.segment_found), dua.getTitle()));
                             sb.tvDesctiption.setText(String.format(getResources().getString(R.string.segment_fav_warning), dua.getTitle()));
 
-                            HbUtils.blurViews(DuaDetailsActivity.this, 5f, sb.blurMain);
+//                            HbUtils.blurViews(DuaDetailsActivity.this, 5f, sb.blurMain);
 
                             AlertDialog ad = new AlertDialog.Builder(DuaDetailsActivity.this)
                                     .setView(sb.getRoot())

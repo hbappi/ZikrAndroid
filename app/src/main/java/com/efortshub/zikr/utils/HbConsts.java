@@ -14,7 +14,7 @@ public class HbConsts {
             "\ncom.google.code.gson" +
             "\njp.wasabeef:recyclerview-animators"+
             "\ncom.facebook.shimmer"+
-            "\ncom.github.Dimezis:BlurView"+
+//            "\ncom.github.Dimezis:BlurView"+
             "\ncom.airbnb.android:lottie";
 
     public static final String linkEfortshubWebsite = "http://efortshub.com";

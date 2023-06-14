@@ -25,14 +25,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import eightbitlab.com.blurview.BlurView;
-import eightbitlab.com.blurview.RenderEffectBlur;
-import eightbitlab.com.blurview.RenderScriptBlur;
+//
+//import eightbitlab.com.blurview.BlurView;
+//import eightbitlab.com.blurview.RenderEffectBlur;
+//import eightbitlab.com.blurview.RenderScriptBlur;
 
 public class HbUtils {
 
-
+/*
     public static  void blurViews(Activity activity, float radius, BlurView... views) {
 
         for (BlurView v : views) {
@@ -65,7 +65,7 @@ public class HbUtils {
 
         }
 
-    }
+    }*/
     public static String getLanguageCode(Context context) {
 
         String code = context.getSharedPreferences(HbConsts.KEY_SAHRED_PREF, MODE_PRIVATE)

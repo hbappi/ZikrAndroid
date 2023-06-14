@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eightbitlab.com.blurview.BlurView
+<androidx.appcompat.widget.LinearLayoutCompat
     android:id="@+id/blur_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#E91F364A"
     android:padding="16dp">
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -49,4 +50,4 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-</eightbitlab.com.blurview.BlurView>
+</androidx.appcompat.widget.LinearLayoutCompat>

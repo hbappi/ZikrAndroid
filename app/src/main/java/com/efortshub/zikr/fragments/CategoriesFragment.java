@@ -2,8 +2,6 @@ package com.efortshub.zikr.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,12 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,8 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.efortshub.zikr.R;
 import com.efortshub.zikr.activities.CategoryWiseLIstActivity;
 import com.efortshub.zikr.activities.DuaDetailsActivity;
-import com.efortshub.zikr.activities.MainActivity;
-import com.efortshub.zikr.adapter.HistoryItemRvAdapter;
 import com.efortshub.zikr.adapter.HistoryItemRvTransparentAdapter;
 import com.efortshub.zikr.databinding.FragmentCategoriesBinding;
 import com.efortshub.zikr.interfaces.BottomNavAnimationListener;
@@ -44,9 +38,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import eightbitlab.com.blurview.BlurView;
-import eightbitlab.com.blurview.RenderEffectBlur;
-import eightbitlab.com.blurview.RenderScriptBlur;
 import jp.wasabeef.recyclerview.adapters.AnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
@@ -92,25 +83,28 @@ public class CategoriesFragment extends Fragment {
 
 //        blurViews(binding.blur1);
 
-        HbUtils.blurViews(requireActivity(),15f,  binding.blurMain);
+//        HbUtils.blurViews(requireActivity(),15f,  binding.blurMain);
 
-        startAnimationLoop(R.anim.anim_fade_out, 0,
-                binding.btnBedtime,
-                binding.btnMorningEvening,
-                binding.btnSocialManner,
-                binding.btnFamily,
-                binding.btnHajj,
-                binding.btnPurification,
-                binding.btnPrayer,
-                binding.btnRamadan,
-                binding.btnFoodDrinks,
-                binding.btnRizq,
-                binding.btnTravel,
-                binding.btnIllness,
-                binding.btnSeekingRefuge,
-                binding.btnConfession,
-                binding.btnNature
-        );
+
+        listener.shouldShowBottomNavNow();
+        initFunctions();
+//        startAnimationLoop(R.anim.anim_fade_out, 0,
+//                binding.btnBedtime,
+//                binding.btnMorningEvening,
+//                binding.btnSocialManner,
+//                binding.btnFamily,
+//                binding.btnHajj,
+//                binding.btnPurification,
+//                binding.btnPrayer,
+//                binding.btnRamadan,
+//                binding.btnFoodDrinks,
+//                binding.btnRizq,
+//                binding.btnTravel,
+//                binding.btnIllness,
+//                binding.btnSeekingRefuge,
+//                binding.btnConfession,
+//                binding.btnNature
+//        );
 
 
 
